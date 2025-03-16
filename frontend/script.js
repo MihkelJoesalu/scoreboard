@@ -23,6 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
         // Save selected judge and go to scoring page
         startBtn.addEventListener("click", function () {
             localStorage.setItem("judgeId", judgeSelect.value);
-            window.location.href = "scoring.html";
+            window.location.href = "./frontend/score.html";
         });
     });

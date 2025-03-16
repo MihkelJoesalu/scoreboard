@@ -36,21 +36,29 @@ const Score = mongoose.model('Score', ScoreSchema);
 // API Routes
 
 // Teams left to rate for judge
-app.get('/api/teams/:judgeId', async (req, res) => {
+app.get('/api/unrated-teams/:judgeName', async (req, res) => {
     try {
-        const judgeId = req.params.judgeId;
-        const teams = await Team.find(); // Get all teams
+        const judgeName = req.params.judgeName;
 
-        // Filter out teams already rated by this judge
-        const teamsLeft = teams.filter(team =>
-            !team.ratings.some(rating => rating.judge.toString() === judgeId)
-        );
+        // Find the judge by name
+        const judge = await Judge.findOne({ name: judgeName });
+        if (!judge) return res.status(404).json({ error: "Judge not found" });
+
+        // Find all team IDs that this judge has rated
+        const ratedTeams = await Score.find({ judgeName: judge._id }).distinct('teamId');
+
+        // Find teams that have not been rated by this judge
+        const teamsLeft = await Team.find({
+            _id: { $nin: ratedTeams } // Exclude teams that have been rated by the judge
+        });
 
         res.json(teamsLeft);
     } catch (error) {
-        res.status(500).json({ error: "Ei laadinud meeskonda" });
+        console.error(error);
+        res.status(500).json({ error: "Failed to fetch unrated teams" });
     }
 });
+
 
 // Register Judge
 app.post('/api/judges', async (req, res) => {
@@ -107,14 +115,14 @@ app.post('/api/rate', async (req, res) => {
         if (!team) return res.status(404).json({ error: "Võistkonda ei leitud" });
 
         // Check if the judge already rated this team
-        const existingScore = await Score.findOne({ judgeName: judgeId, teamId });
+        const existingScore = await Score.findOne({ judgeName: judge._id, teamId });
         if (existingScore) {
             return res.status(400).json({ error: "Oled juba sellele meeskonnale hinde andnud" });
         }
 
         // Create and save new score
         const newScore = new Score({
-            judgeName: judgeId,
+            judgeName: judge._id,
             teamId,
             scores
         });
@@ -157,7 +165,7 @@ app.get('/api/results', async (req, res) => {
                     team: team.name,
                     total: totalScores.design + totalScores.factuality + totalScores.functionality + totalScores.codeQuality,
                     detailedScores: totalScores,
-                    judges: scores.map(s => ({ judge: s.judgeName.name, scores: s.scores }))
+                    judges: scores.map(s => ({ judgeId: s.judgeName._id, judgeName: s.judgeName.name, scores: s.scores }))
                 };
             })
         );

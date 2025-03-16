@@ -10,12 +10,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     
         // Display judge's name
-        const judgeRes = await fetch(`http://localhost:5000/api/judges/${judgeId}`);
+        const judgeRes = await fetch(`http://localhost:3005/api/judges/${judgeId}`);
         const judgeData = await judgeRes.json();
         judgeNameEl.textContent = `Judge: ${judgeData.name}`;
     
         // Fetch teams that haven't been rated by this judge
-        const teamsRes = await fetch(`http://localhost:5000/api/teams/unrated?judgeId=${judgeId}`);
+        const teamsRes = await fetch(`http://localhost:3005/api/teams/unrated?judgeId=${judgeId}`);
         const teams = await teamsRes.json();
         
         teams.forEach(team => {
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             };
     
             // Send scores to backend
-            const response = await fetch("http://localhost:5000/api/scores", {
+            const response = await fetch("http://localhost:3005/api/rate", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ judgeName: judgeId, teamId, scores })
