@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function () {
         const judgeId = localStorage.getItem("judgeId");
+        const judgeName = localStorage.getItem("judgeName");
         const judgeNameEl = document.getElementById("judgeName");
         const teamSelect = document.getElementById("teamSelect");
         const scoreForm = document.getElementById("scoreForm");
@@ -15,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         judgeNameEl.textContent = `Judge: ${judgeData.name}`;
     
         // Fetch teams that haven't been rated by this judge
-        const teamsRes = await fetch(`http://localhost:3005/api/teams/unrated?judgeId=${judgeId}`);
+        const teamsRes = await fetch(`http://localhost:3005/api/unrated-teams/${judgeName}`);
         const teams = await teamsRes.json();
         
         teams.forEach(team => {
