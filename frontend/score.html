@@ -19,9 +19,9 @@
 
         <form id="scoreForm">
             <h2>Disain</h2>
-            <label>Atraktiivsus (10): <input type="number" name="design.visuallyAttractive" max="10" min="0"></label>
-            <label>Interaktiivsus (10): <input type="number" name="design.interactivity" max="10" min="0"></label>
-            <label>Intuitiivsus (5): <input type="number" name="design.intuitivity" max="5" min="0"></label>
+            <label>Atraktiivsus (10): <input type="range" name="design.visuallyAttractive" max="10" min="0" step="1" oninput="this.nextElementSibling.value = this.value"><output>5</output></label>
+            <label>Interaktiivsus (10): <input type="range" name="design.interactivity" max="10" min="0" step="1" oninput="this.nextElementSibling.value = this.value"><output>5</output></label>
+            <label>Intuitiivsus (5): <input type="range" name="design.intuitivity" max="5" min="0" step="1" oninput="this.nextElementSibling.value = this.value"><output>2</output></label>
 
             <h2>Faktid</h2>
             <label>Aktuaalsus (10): <input type="number" name="factuality.actuality" max="10" min="0"></label>
