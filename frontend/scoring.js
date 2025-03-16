@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const judgeData = judges.find(judge => judge._id === judgeId || judge.name === judgeName);
 
     if (!judgeData) {
-        console.error("Judge not found");
+        console.error("Hindajat ei leitud");
         return;
     }
 
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const teamId = teamSelect.value;
         if (!teamId) {
-            alert("Please select a team");
+            alert("Palun vali meeskond");
             return;
         }
 
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const response = await fetch(`${API_URL}/api/rate`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ judgeName: judgeId, teamId, scores })
+            body: JSON.stringify({ judgeId, teamId, scores })
         });
 
         if (response.ok) {
