@@ -3,8 +3,18 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+// Define your CORS configuration
+const corsOptions = {
+        origin: process.env.NODE_ENV === 'production' 
+                ? 'https://your-app.netlify.app'   // Replace with your actual Netlify URL
+                : 'http://localhost:3005',           // For local development 
+    };
+    
+    // Apply CORS middleware
+    app.use(cors(corsOptions));
+
 const app = express();
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Connect to MongoDB
@@ -204,6 +214,9 @@ app.get('/api/justresults', async (req, res) => {
     }
 });
 
+//preflight request
+app.options('*', cors());
+
 // Start Server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3005;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
