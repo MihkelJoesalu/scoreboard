@@ -2,14 +2,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const judgeSelect = document.getElementById("judgeSelect");
         const startBtn = document.getElementById("startBtn");
 
-// Define your CORS configuration
-const API_URL = process.env.NODE_ENV === 'production'
-? 'https://scoreboard-u4yf.onrender.com' // Replace with your actual Render URL
-: 'http://localhost:3005'; // For local development 
+    const API_URL = 'https://scoreboard-u4yf.onrender.com' // Replace with your actual Render URL
 
         // Fetch judges from API
         fetch(`${API_URL}/api/judges`)
-            .then(res => res.json())
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json();
+        })
             .then(judges => {
                 judges.forEach(judge => {
                     let option = document.createElement("option");
