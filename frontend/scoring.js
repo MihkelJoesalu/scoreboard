@@ -93,4 +93,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             alert("Error submitting score!");
         }
     });
+    document.getElementById("seeResultsBtn").addEventListener("click", function () {
+        window.location.href = "results.html";
+    });
 });
