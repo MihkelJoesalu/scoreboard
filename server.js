@@ -8,11 +8,11 @@ app.use(express.json());
 
 // Define your CORS configuration
 const corsOptions = {
-            origin: process.env.NODE_ENV === 'production' 
-                ? 'https://scoreboard-u4yf.onrender.com' // Replace with your actual Render URL
-                : 'http://localhost:3005'  // For local development 
-    };
-    
+    origin: process.env.NODE_ENV === 'production'
+        ? ['https://scoreboard-roan-five.vercel.app', 'https://hinneteleht.netlify.app'] // Add your Netlify URL here
+        : '*'  // Allow all origins for local development
+};
+
 // Apply CORS middleware
 app.use(cors(corsOptions));
 
@@ -68,7 +68,6 @@ app.get('/api/unrated-teams/:judgeName', async (req, res) => {
     }
 });
 
-
 // Register Judge
 app.post('/api/judges', async (req, res) => {
     try {
@@ -110,7 +109,7 @@ app.get('/api/teams', async (req, res) => {
     }
 });
 
-//Submit ratings
+// Submit ratings
 app.post('/api/rate', async (req, res) => {
     try {
         const { judgeId, teamId, scores } = req.body;
@@ -185,7 +184,6 @@ app.get('/api/results', async (req, res) => {
         res.status(500).json({ error: "Failed to fetch results" });
     }
 });
-
 
 // Submit/Edit Scores
 app.post('/api/scores', async (req, res) => {
