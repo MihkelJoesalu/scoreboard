@@ -1,11 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
         const judgeSelect = document.getElementById("judgeSelect");
-        const startBtn = document.getElementById("startBtn");
-    
-        // Fetch judges from API
-        fetch("http://localhost:3005/api/judges")
-            .then(res => res.json())
-            .then(judges => {
+        const startBtn = document.getElementById("startBtn");
+
+// Define your CORS configuration
+const API_URL = process.env.NODE_ENV === 'production'
+? 'https://scoreboard-henna.vercel.app' // Replace with your actual Vercel URL
+: 'http://localhost:3005'; // For local development 
+
+        // Fetch judges from API
+        fetch(API_URL + "/api/judges")
+            .then(res => res.json())
+            .then(judges => {
                 judges.forEach(judge => {
                     let option = document.createElement("option");
                     option.value = judge._id;

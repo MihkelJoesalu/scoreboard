@@ -9,7 +9,7 @@ app.use(express.json());
 // Define your CORS configuration
 const corsOptions = {
             origin: process.env.NODE_ENV === 'production' 
-                ? 'https://hinneteleht.netlify.app' // Replace with your actual Netlify URL
+                ? 'https://scoreboard-henna.vercel.app' // Replace with your actual Vercel URL
                 : 'http://localhost:3005'  // For local development 
     };
     
