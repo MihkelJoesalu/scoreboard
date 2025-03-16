@@ -2,20 +2,19 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const app = express();
+
+app.use(express.json());
 
 // Define your CORS configuration
 const corsOptions = {
-        origin: process.env.NODE_ENV === 'production' 
-                ? 'https://hinneteleht.netlify.app'   // Replace with your actual Netlify URL
-                : 'http://localhost:3005',           // For local development 
+            origin: process.env.NODE_ENV === 'production' 
+                ? 'https://hinneteleht.netlify.app' // Replace with your actual Netlify URL
+                : 'http://localhost:3005'  // For local development 
     };
     
     // Apply CORS middleware
     app.use(cors(corsOptions));
-
-const app = express();
-app.use(cors(corsOptions));
-app.use(express.json());
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
