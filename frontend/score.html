@@ -3,38 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Score Team</title>
-    <link rel="stylesheet" href="styles.scss">
+    <title>Scoring Page</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1 id="teamName">Scoring Team</h1>
+        <h1>Scoring Page</h1>
+        <p id="judgeName"></p>
+        
+        <label for="teamSelect">Select a Team:</label>
+        <select id="teamSelect">
+            <option value="">-- Select Team --</option>
+        </select>
+
         <form id="scoreForm">
-            <h2>Disain</h2>
-            <label>Visually Attractive (10): <input type="number" id="design1" max="10"></label>
-            <label>Interaktiivsus ja animatsioonid (10): <input type="number" id="design2" max="10"></label>
-            <label>Intuitivity (5): <input type="number" id="design3" max="5"></label>
+            <h2>Design</h2>
+            <label>Visually Attractive (10): <input type="number" name="design.visuallyAttractive" max="10" min="0"></label>
+            <label>Interactivity (10): <input type="number" name="design.interactivity" max="10" min="0"></label>
+            <label>Intuitivity (5): <input type="number" name="design.intuitivity" max="5" min="0"></label>
 
-            <h2>Factuality & Learnability</h2>
-            <label>Actuality (10): <input type="number" id="factual1" max="10"></label>
-            <label>Credibility (10): <input type="number" id="factual2" max="10"></label>
-            <label>Learning Value (5): <input type="number" id="factual3" max="5"></label>
+            <h2>Factuality</h2>
+            <label>Actuality (10): <input type="number" name="factuality.actuality" max="10" min="0"></label>
+            <label>Credibility (10): <input type="number" name="factuality.credibility" max="10" min="0"></label>
+            <label>Learning Value (5): <input type="number" name="factuality.learningValue" max="5" min="0"></label>
 
-            <h2>Factuality & Learnability</h2>
-            <label>Actuality (10): <input type="number" id="factual1" max="10"></label>
-            <label>Credibility (10): <input type="number" id="factual2" max="10"></label>
-            <label>Learning Value (5): <input type="number" id="factual3" max="5"></label>
+            <h2>Functionality</h2>
+            <label>Mistakes (10): <input type="number" name="functionality.mistakes" max="10" min="0"></label>
+            <label>Reaction Time (10): <input type="number" name="functionality.reactionTime" max="10" min="0"></label>
+            <label>Error Management (5): <input type="number" name="functionality.errorManagement" max="5" min="0"></label>
 
-            <h2>Factuality & Learnability</h2>
-            <label>Actuality (10): <input type="number" id="factual1" max="10"></label>
-            <label>Credibility (10): <input type="number" id="factual2" max="10"></label>
-            <label>Learning Value (5): <input type="number" id="factual3" max="5"></label>
+            <h2>Code Quality</h2>
+            <label>Structure (10): <input type="number" name="codeQuality.structure" max="10" min="0"></label>
+            <label>DRY Principles (10): <input type="number" name="codeQuality.dryPrinciples" max="10" min="0"></label>
+            <label>Best Practices (5): <input type="number" name="codeQuality.bestPractices" max="5" min="0"></label>
 
-            <button type="submit">Submit Scores</button>
+            <button type="submit">Submit Score</button>
         </form>
     </div>
 
-    <script src="api.js"></script>
-    <script src="script.js"></script>
+    <script src="./frontsend/scoring.js"></script>
 </body>
 </html>

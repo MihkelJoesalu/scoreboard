@@ -19,7 +19,7 @@ const JudgeSchema = new mongoose.Schema({ name: { type: String, unique: true, re
 const TeamSchema = new mongoose.Schema({ name: { type: String, unique: true, required: true } });
 
 const ScoreSchema = new mongoose.Schema({
-    judgeName: { type: String, required: true },
+    judgeName: { type: mongoose.Schema.Types.ObjectId, ref: 'Judge', required: true },
     teamId: { type: mongoose.Schema.Types.ObjectId, ref: 'Team', required: true },
     scores: {
         design: { visuallyAttractive: Number, interactivity: Number, intuitivity: Number },
@@ -34,6 +34,23 @@ const Team = mongoose.model('Team', TeamSchema);
 const Score = mongoose.model('Score', ScoreSchema);
 
 // API Routes
+
+// Teams left to rate for judge
+app.get('/api/teams/:judgeId', async (req, res) => {
+    try {
+        const judgeId = req.params.judgeId;
+        const teams = await Team.find(); // Get all teams
+
+        // Filter out teams already rated by this judge
+        const teamsLeft = teams.filter(team =>
+            !team.ratings.some(rating => rating.judge.toString() === judgeId)
+        );
+
+        res.json(teamsLeft);
+    } catch (error) {
+        res.status(500).json({ error: "Ei laadinud meeskonda" });
+    }
+});
 
 // Register Judge
 app.post('/api/judges', async (req, res) => {
@@ -76,6 +93,81 @@ app.get('/api/teams', async (req, res) => {
     }
 });
 
+//Submit ratings
+app.post('/api/rate', async (req, res) => {
+    try {
+        const { judgeId, teamId, scores } = req.body;
+
+        // Validate judge
+        const judge = await Judge.findById(judgeId);
+        if (!judge) return res.status(404).json({ error: "Hindajat ei leitud" });
+
+        // Validate team
+        const team = await Team.findById(teamId);
+        if (!team) return res.status(404).json({ error: "Võistkonda ei leitud" });
+
+        // Check if the judge already rated this team
+        const existingScore = await Score.findOne({ judgeName: judgeId, teamId });
+        if (existingScore) {
+            return res.status(400).json({ error: "Oled juba sellele meeskonnale hinde andnud" });
+        }
+
+        // Create and save new score
+        const newScore = new Score({
+            judgeName: judgeId,
+            teamId,
+            scores
+        });
+
+        await newScore.save();
+        res.status(201).json({ message: "Hinded edukalt edastatud!", score: newScore });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Hinnete andmine ebaõnnestus!" });
+    }
+});
+
+// Final Score table
+app.get('/api/results', async (req, res) => {
+    try {
+        const teams = await Team.find(); // Get all teams
+        const results = await Promise.all(
+            teams.map(async (team) => {
+                // Fetch all ratings for this team
+                const scores = await Score.find({ teamId: team._id }).populate("judgeName", "name");
+
+                // Initialize total scores
+                const totalScores = {
+                    design: 0,
+                    factuality: 0,
+                    functionality: 0,
+                    codeQuality: 0
+                };
+
+                // Sum up all judge scores
+                scores.forEach(({ scores }) => {
+                    totalScores.design += scores.design.visuallyAttractive + scores.design.interactivity + scores.design.intuitivity;
+                    totalScores.factuality += scores.factuality.actuality + scores.factuality.credibility + scores.factuality.learningValue;
+                    totalScores.functionality += scores.functionality.mistakes + scores.functionality.reactionTime + scores.functionality.errorManagement;
+                    totalScores.codeQuality += scores.codeQuality.structure + scores.codeQuality.dryPrinciples + scores.codeQuality.bestPractices;
+                });
+
+                return {
+                    team: team.name,
+                    total: totalScores.design + totalScores.factuality + totalScores.functionality + totalScores.codeQuality,
+                    detailedScores: totalScores,
+                    judges: scores.map(s => ({ judge: s.judgeName.name, scores: s.scores }))
+                };
+            })
+        );
+
+        res.json(results);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to fetch results" });
+    }
+});
 
 
 // Submit/Edit Scores
@@ -95,7 +187,7 @@ app.post('/api/scores', async (req, res) => {
 });
 
 // Get Final Scores
-app.get('/api/results', async (req, res) => {
+app.get('/api/justresults', async (req, res) => {
     try {
         const results = await Score.find().populate('teamId', 'name').sort({ teamId: 1, judgeName: 1 });
         res.json(results);

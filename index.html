@@ -3,21 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Judge Login</title>
-    <link rel="stylesheet" href="./frontend/styles.scss">
+    <title>Judge Selection</title>
+    <link rel="stylesheet" href="./frontend/styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Kohtuniku nimi</h1>
-        <input type="text" id="judgeName" placeholder="Eesnimi">
-
-
-        <h2>Vali meeskond</h2>
-        <div id="teamList"></div>
-        <button id="loginBtn">Alusta hindamist</button>
+        <h1>Select Your Name</h1>
+        <select id="judgeSelect">
+            <option value="">-- Select Judge --</option>
+        </select>
+        <button id="startBtn" disabled>Start Scoring</button>
     </div>
 
-    <script src="./frontend/api.js"></script>
     <script src="./frontend/script.js"></script>
 </body>
 </html>
