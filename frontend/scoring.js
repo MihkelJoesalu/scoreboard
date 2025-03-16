@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", async function () {
         const teamSelect = document.getElementById("teamSelect");
         const scoreForm = document.getElementById("scoreForm");
     
-        if (!judgeId) {
+        /*if (!judgeId) {
             window.location.href = "index.html"; // Redirect if judge not selected
             return;
-        }
+        }*/
     
 // Fetch all judges (you mentioned judges, so we'll adjust for that)
     const judgesRes = await fetch("http://localhost:3005/api/judges");

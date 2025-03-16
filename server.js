@@ -6,7 +6,7 @@ const cors = require('cors');
 // Define your CORS configuration
 const corsOptions = {
         origin: process.env.NODE_ENV === 'production' 
-                ? 'https://your-app.netlify.app'   // Replace with your actual Netlify URL
+                ? 'https://hinneteleht.netlify.app'   // Replace with your actual Netlify URL
                 : 'http://localhost:3005',           // For local development 
     };
     
