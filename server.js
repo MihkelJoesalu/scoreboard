@@ -13,8 +13,8 @@ const corsOptions = {
                 : 'http://localhost:3005'  // For local development 
     };
     
-    // Apply CORS middleware
-    app.use(cors(corsOptions));
+// Apply CORS middleware
+app.use(cors(corsOptions));
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {

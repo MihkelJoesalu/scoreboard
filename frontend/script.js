@@ -8,7 +8,7 @@ const API_URL = process.env.NODE_ENV === 'production'
 : 'http://localhost:3005'; // For local development 
 
         // Fetch judges from API
-        fetch(API_URL + "/api/judges")
+        fetch(`${API_URL}/api/judges`)
             .then(res => res.json())
             .then(judges => {
                 judges.forEach(judge => {
