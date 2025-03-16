@@ -7,14 +7,13 @@ const app = express();
 app.use(express.json());
 
 // Define your CORS configuration
-const corsOptions = {
-            origin: process.env.NODE_ENV === 'production' 
-                ? 'https://scoreboard-u4yf.onrender.com' // Replace with your actual Vercel URL
-                : 'http://localhost:3005'  // For local development 
-    };
+const API_URL = process.env.NODE_ENV === 'production' 
+                ? 'https://scoreboard-u4yf.onrender.com' // Replace with your actual render URL
+                : 'http://localhost:3005';  // For local development 
+    
     
 // Apply CORS middleware
-app.use(cors(corsOptions));
+app.use(cors(API_URL));
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
