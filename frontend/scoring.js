@@ -10,13 +10,24 @@ document.addEventListener("DOMContentLoaded", async function () {
             return;
         }
     
-        // Display judge's name
-        const judgeRes = await fetch(`http://localhost:3005/api/judges/${judgeId}`);
-        const judgeData = await judgeRes.json();
-        judgeNameEl.textContent = `Judge: ${judgeData.name}`;
+// Fetch all judges (you mentioned judges, so we'll adjust for that)
+    const judgesRes = await fetch("http://localhost:3005/api/judges");
+    const judges = await judgesRes.json();
+
+    // Find the judge by ID or Name
+    const judgeData = judges.find(judge => judge._id === judgeId || judge.name === judgeName);
+    
+    if (!judgeData) {
+        console.error("Judge not found");
+        return;
+    }
+
+    // Display judge's name
+    judgeNameEl.textContent = `Judge: ${judgeData.name}`;
     
         // Fetch teams that haven't been rated by this judge
-        const teamsRes = await fetch(`http://localhost:3005/api/unrated-teams/${judgeName}`);
+    console.log("Kohtuniku nimi:", judgeName);
+        const teamsRes = await fetch(`http://localhost:3005/api/unrated-teams/${judgeData.name}`);
         const teams = await teamsRes.json();
         
         teams.forEach(team => {
