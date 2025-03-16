@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         const response = await fetch(`${API_URL}/api/results`);
         const results = await response.json();
 
+        results.sort((a, b) => b.total - a.total);
+
         results.forEach(team => {
             const row = document.createElement("tr");
 
