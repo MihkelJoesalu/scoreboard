@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scoring Page</title>
+    <title>Hindamise leht</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,36 +14,34 @@
         
         <label for="teamSelect">Vali meeskond:</label>
         <select id="teamSelect">
-            <option value="">-- Select Team --</option>
+            <option value="">-- Vali meeskond --</option>
         </select>
 
         <form id="scoreForm">
-            <h2>Design</h2>
-            <label>Visually Attractive (10): <input type="number" name="design.visuallyAttractive" max="10" min="0"></label>
-            <label>Interactivity (10): <input type="number" name="design.interactivity" max="10" min="0"></label>
-            <label>Intuitivity (5): <input type="number" name="design.intuitivity" max="5" min="0"></label>
+            <h2>Disain</h2>
+            <label>Atraktiivsus (10): <input type="number" name="design.visuallyAttractive" max="10" min="0"></label>
+            <label>Interaktiivsus (10): <input type="number" name="design.interactivity" max="10" min="0"></label>
+            <label>Intuitiivsus (5): <input type="number" name="design.intuitivity" max="5" min="0"></label>
 
-            <h2>Factuality</h2>
-            <label>Actuality (10): <input type="number" name="factuality.actuality" max="10" min="0"></label>
-            <label>Credibility (10): <input type="number" name="factuality.credibility" max="10" min="0"></label>
-            <label>Learning Value (5): <input type="number" name="factuality.learningValue" max="5" min="0"></label>
+            <h2>Faktid</h2>
+            <label>Aktuaalsus (10): <input type="number" name="factuality.actuality" max="10" min="0"></label>
+            <label>Usaldusväärsus (10): <input type="number" name="factuality.credibility" max="10" min="0"></label>
+            <label>Õppeväärtus (5): <input type="number" name="factuality.learningValue" max="5" min="0"></label>
 
-            <h2>Functionality</h2>
+            <h2>Funktsionaalsus</h2>
             <label>Mistakes (10): <input type="number" name="functionality.mistakes" max="10" min="0"></label>
-            <label>Reaction Time (10): <input type="number" name="functionality.reactionTime" max="10" min="0"></label>
-            <label>Error Management (5): <input type="number" name="functionality.errorManagement" max="5" min="0"></label>
+            <label>Reageerimisaeg (10): <input type="number" name="functionality.reactionTime" max="10" min="0"></label>
+            <label>Tõrkehaldus (5): <input type="number" name="functionality.errorManagement" max="5" min="0"></label>
 
-            <h2>Code Quality</h2>
-            <label>Structure (10): <input type="number" name="codeQuality.structure" max="10" min="0"></label>
-            <label>DRY Principles (10): <input type="number" name="codeQuality.dryPrinciples" max="10" min="0"></label>
+            <h2>Koodi kvaliteet</h2>
+            <label>Struktuur (10): <input type="number" name="codeQuality.structure" max="10" min="0"></label>
+            <label>DRY põhimõtted (10): <input type="number" name="codeQuality.dryPrinciples" max="10" min="0"></label>
             <label>Best Practices (5): <input type="number" name="codeQuality.bestPractices" max="5" min="0"></label>
 
-            <button type="submit">Submit Score</button>
-            
         </form>
+        <button type="submit">Kinnita hinded</button>
         <button id="seeResultsBtn">Vaata tulemusi</button>
     </div>
-
     <script src="scoring.js"></script>
 </body>
 </html>
