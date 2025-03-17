@@ -137,8 +137,8 @@ th, td {
 }
 
 th {
-    background: blue;
-    color: white;
+    background: #DE3C4B;
+    color: #EDF7F6;
 }
 
 tr:nth-child(even) {
