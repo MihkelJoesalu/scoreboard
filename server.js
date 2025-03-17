@@ -60,11 +60,6 @@ const ScoreSchema = new mongoose.Schema({
       reactionTime: Number,
       errorManagement: Number,
     },
-    codeQuality: {
-      structure: Number,
-      dryPrinciples: Number,
-      bestPractices: Number,
-    },
   },
 });
 
@@ -213,10 +208,6 @@ app.get("/api/results", async (req, res) => {
             scores.functionality.mistakes +
             scores.functionality.reactionTime +
             scores.functionality.errorManagement;
-          totalScores.codeQuality +=
-            scores.codeQuality.structure +
-            scores.codeQuality.dryPrinciples +
-            scores.codeQuality.bestPractices;
         });
 
         return {
@@ -224,8 +215,7 @@ app.get("/api/results", async (req, res) => {
           total:
             totalScores.design +
             totalScores.factuality +
-            totalScores.functionality +
-            totalScores.codeQuality,
+            totalScores.functionality,
           detailedScores: totalScores,
           judges: scores.map((s) => ({
             judgeId: s.judgeName._id,
