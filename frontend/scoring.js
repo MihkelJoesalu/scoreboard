@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   // Display judge's name
-  judgeNameEl.textContent = `Judge: ${judgeData.name}`;
+  judgeNameEl.textContent = `Hindaja: ${judgeData.name}`;
 
   // Fetch teams that haven't been rated by this judge
   const teamsRes = await fetch(
@@ -67,11 +67,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         mistakes: Number(formData.get("functionality.mistakes")),
         reactionTime: Number(formData.get("functionality.reactionTime")),
         errorManagement: Number(formData.get("functionality.errorManagement")),
-      },
-      codeQuality: {
-        structure: Number(formData.get("codeQuality.structure")),
-        dryPrinciples: Number(formData.get("codeQuality.dryPrinciples")),
-        bestPractices: Number(formData.get("codeQuality.bestPractices")),
       },
     };
 

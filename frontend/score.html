@@ -8,8 +8,8 @@
   </head>
   <body>
     <div class="container">
-      <a href="../index.html">Pealehele</a>
-      <h1>Scoring Page</h1>
+      <a href="../index.html" class="button">Pealehele</a>
+      <h1>Hindamise leht</h1>
       <p id="judgeName"></p>
 
       <label for="teamSelect">Vali meeskond:</label>
@@ -18,20 +18,20 @@
       </select>
 
       <form id="scoreForm">
-        <h2>Disain</h2>
+        <h2>Kasutajakogemus & Disain (33 punkti)</h2>
         <label
-          >Atraktiivsus (10):
+          >Visuaalne atraktiivsus ja ühtsus:
           <input
             type="range"
             name="design.visuallyAttractive"
-            max="10"
+            max="13"
             min="0"
             step="1"
             oninput="this.nextElementSibling.value = this.value"
-          /><output>5</output></label
+          /><output>0</output></label
         >
         <label
-          >Interaktiivsus (10):
+          >Interaktiivsus ja intuitiivsus:
           <input
             type="range"
             name="design.interactivity"
@@ -39,34 +39,34 @@
             min="0"
             step="1"
             oninput="this.nextElementSibling.value = this.value"
-          /><output>5</output></label
+          /><output>0</output></label
         >
         <label
-          >Intuitiivsus (5):
+          >Animatsioonid ja illustratsioonid:
           <input
             type="range"
             name="design.intuitivity"
-            max="5"
-            min="0"
-            step="1"
-            oninput="this.nextElementSibling.value = this.value"
-          /><output>2</output></label
-        >
-
-        <h2>Faktid</h2>
-        <label
-          >Aktuaalsus (10):
-          <input
-            type="range"
-            name="factuality.actuality"
             max="10"
             min="0"
             step="1"
             oninput="this.nextElementSibling.value = this.value"
-          /><output>5</output></label
+          /><output>0</output></label
+        >
+
+        <h2>Õpetlikkus ja faktitäpsus</h2>
+        <label
+          >Seotus küberturbega:
+          <input
+            type="range"
+            name="factuality.actuality"
+            max="13"
+            min="0"
+            step="1"
+            oninput="this.nextElementSibling.value = this.value"
+          /><output>0</output></label
         >
         <label
-          >Usaldusväärsus (10):
+          >Faktide täpsus ja usaldusväärsus:
           <input
             type="range"
             name="factuality.credibility"
@@ -74,34 +74,34 @@
             min="0"
             step="1"
             oninput="this.nextElementSibling.value = this.value"
-          /><output>5</output></label
+          /><output>0</output></label
         >
         <label
-          >Õppeväärtus (5):
+          >Õpitav väärtus:
           <input
             type="range"
             name="factuality.learningValue"
-            max="5"
-            min="0"
-            step="1"
-            oninput="this.nextElementSibling.value = this.value"
-          /><output>2</output></label
-        >
-
-        <h2>Funktsionaalsus</h2>
-        <label
-          >Mistakes (10):
-          <input
-            type="range"
-            name="functionality.mistakes"
             max="10"
             min="0"
             step="1"
             oninput="this.nextElementSibling.value = this.value"
-          /><output>5</output></label
+          /><output>0</output></label
+        >
+
+        <h2>Funktsionaalsus ja jõudlus </h2>
+        <label
+          >Vigade puudumine ja jõudlus:
+          <input
+            type="range"
+            name="functionality.mistakes"
+            max="13"
+            min="0"
+            step="1"
+            oninput="this.nextElementSibling.value = this.value"
+          /><output>0</output></label
         >
         <label
-          >Reageerimisaeg (10):
+          >Dokumentatsioon ja help:
           <input
             type="range"
             name="functionality.reactionTime"
@@ -109,18 +109,18 @@
             min="0"
             step="1"
             oninput="this.nextElementSibling.value = this.value"
-          /><output>5</output></label
+          /><output>0</output></label
         >
         <label
-          >Tõrkehaldus (5):
+          >Koodi loetavus ja struktuur:
           <input
             type="range"
             name="functionality.errorManagement"
-            max="5"
+            max="10"
             min="0"
             step="1"
             oninput="this.nextElementSibling.value = this.value"
-          /><output>2</output></label
+          /><output>0</output></label
         >
 
         <h2>Koodi kvaliteet</h2>
@@ -133,7 +133,7 @@
             min="0"
             step="1"
             oninput="this.nextElementSibling.value = this.value"
-          /><output>5</output></label
+          /><output>0</output></label
         >
         <label
           >DRY põhimõtted (10):
@@ -144,7 +144,7 @@
             min="0"
             step="1"
             oninput="this.nextElementSibling.value = this.value"
-          /><output>5</output></label
+          /><output>0</output></label
         >
         <label
           >Best Practices (5):
@@ -155,7 +155,7 @@
             min="0"
             step="1"
             oninput="this.nextElementSibling.value = this.value"
-          /><output>2</output></label
+          /><output>0</output></label
         >
         <br />
         <button type="submit">Kinnita hinded</button>

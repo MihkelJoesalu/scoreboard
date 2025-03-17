@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                 <td>${team.detailedScores.design}</td>
                 <td>${team.detailedScores.factuality}</td>
                 <td>${team.detailedScores.functionality}</td>
-                <td>${team.detailedScores.codeQuality}</td>
             `;
 
       resultsTable.appendChild(row);
