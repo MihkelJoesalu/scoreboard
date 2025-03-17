@@ -9,6 +9,10 @@ body {
     color: #34495e;
     padding-top: 40px;
 }
+h2 {
+    margin-top: 60px;
+    font-size: xx-large;
+}
 
 .container {
     max-width: 600px;
@@ -57,6 +61,7 @@ input[type="range"] {
     border-radius: 5px;
     margin: 0 auto;
     outline: 0;
+    margin-bottom: 40px;
 }
 
 input[type="range"]:disabled {
