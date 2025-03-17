@@ -18,7 +18,7 @@
       </select>
 
       <form id="scoreForm">
-        <h2>Kasutajakogemus & Disain (33 punkti)</h2>
+        <h2>Kasutajakogemus & Disain</h2>
         <label
           >Visuaalne atraktiivsus ja ühtsus:
           <input
@@ -88,7 +88,7 @@
           /><output>0</output></label
         >
 
-        <h2>Funktsionaalsus ja jõudlus </h2>
+        <h2>Funktsionaalsus ja jõudlus</h2>
         <label
           >Vigade puudumine ja jõudlus:
           <input
@@ -122,46 +122,11 @@
             oninput="this.nextElementSibling.value = this.value"
           /><output>0</output></label
         >
-
-        <h2>Koodi kvaliteet</h2>
-        <label
-          >Struktuur (10):
-          <input
-            type="range"
-            name="codeQuality.structure"
-            max="10"
-            min="0"
-            step="1"
-            oninput="this.nextElementSibling.value = this.value"
-          /><output>0</output></label
-        >
-        <label
-          >DRY põhimõtted (10):
-          <input
-            type="range"
-            name="codeQuality.dryPrinciples"
-            max="10"
-            min="0"
-            step="1"
-            oninput="this.nextElementSibling.value = this.value"
-          /><output>0</output></label
-        >
-        <label
-          >Best Practices (5):
-          <input
-            type="range"
-            name="codeQuality.bestPractices"
-            max="5"
-            min="0"
-            step="1"
-            oninput="this.nextElementSibling.value = this.value"
-          /><output>0</output></label
-        >
         <br />
-        <button type="submit">Kinnita hinded</button>
+        <button type="submit" class="button">Kinnita hinded</button>
       </form>
 
-      <button id="seeResultsBtn">Vaata tulemusi</button>
+      <a ref="results.html" class="button">Tulemused</a>
     </div>
     <script src="scoring.js"></script>
   </body>
