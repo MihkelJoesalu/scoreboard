@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     // Display judge's name
-    judgeNameEl.textContent = `Judge: ${judgeData.name}`;
+    judgeNameEl.textContent = `Hindaja: ${judgeData.name}`;
 
     // Fetch teams that haven't been rated by this judge
     const teamsRes = await fetch(`${API_URL}/api/unrated-teams/${judgeData.name}`);
