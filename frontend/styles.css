@@ -1,16 +1,25 @@
+@import url(https://fonts.googleapis.com/css?family=Dosis:700);
+
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f4f4f4;
+    font-family: "Dosis", Helvetica, Arial, sans-serif;
+    background: #ecf0f1;
+    color: #34495e;
+    padding-top: 40px;
+    text-shadow: white 1px 1px 1px;
 }
 
 .container {
-    margin: 100px auto;
+    max-width: 600px;
+    margin: 0 auto;
     padding: 20px;
     background: white;
-    max-width: 800px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
 }
 
 a.button {
@@ -37,8 +46,47 @@ select, button {
 }
 
 input[type="range"] {
-    width: 60%;
-    margin: 5px;
+    display: block;
+    -webkit-appearance: none;
+    background-color: #bdc3c7;
+    width: 300px;
+    height: 5px;
+    border-radius: 5px;
+    margin: 0 auto;
+    outline: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #e74c3c;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background-color: white;
+    border: 2px solid #e74c3c;
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+    transform: scale(1.6);
+}
+
+.value {
+    border-bottom: 4px dashed #bdc3c7;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    margin: 10px auto;
+    letter-spacing: -.07em;
+    text-shadow: white 2px 2px 2px;
 }
 
 button {
@@ -47,6 +95,7 @@ button {
     border: none;
     cursor: pointer;
     max-width: 150px;
+    margin-top: 20px;
 }
 
 button:disabled {

@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require("path");
 const app = express();
 
 app.use(express.json());
@@ -46,19 +47,19 @@ const ScoreSchema = new mongoose.Schema({
   teamId: { type: mongoose.Schema.Types.ObjectId, ref: "Team", required: true },
   scores: {
     design: {
-      visuallyAttractive: Number,
-      interactivity: Number,
-      intuitivity: Number,
+      visuaalne: Number,
+      interaktiivne: Number,
+      illustratiivne: Number,
     },
     factuality: {
-      actuality: Number,
-      credibility: Number,
-      learningValue: Number,
+      aktuaalne: Number,
+      usaldusväärne: Number,
+      õpetlik: Number,
     },
     functionality: {
-      mistakes: Number,
-      reactionTime: Number,
-      errorManagement: Number,
+      jõudlus: Number,
+      dokumentatsioon: Number,
+      struktuur: Number,
     },
   },
 });
@@ -66,6 +67,9 @@ const ScoreSchema = new mongoose.Schema({
 const Judge = mongoose.model("Judge", JudgeSchema);
 const Team = mongoose.model("Team", TeamSchema);
 const Score = mongoose.model("Score", ScoreSchema);
+
+// Serve static files from the frontend directory
+app.use(express.static(path.join(__dirname, 'frontend')));
 
 // API Routes
 
@@ -191,23 +195,22 @@ app.get("/api/results", async (req, res) => {
           design: 0,
           factuality: 0,
           functionality: 0,
-          codeQuality: 0,
         };
 
         // Sum up all judge scores
         scores.forEach(({ scores }) => {
           totalScores.design +=
-            scores.design.visuallyAttractive +
-            scores.design.interactivity +
-            scores.design.intuitivity;
+            scores.design.visuaalne +
+            scores.design.interaktiivne +
+            scores.design.illustratiivne;
           totalScores.factuality +=
-            scores.factuality.actuality +
-            scores.factuality.credibility +
-            scores.factuality.learningValue;
+            scores.factuality.aktuaalne +
+            scores.factuality.usaldusväärne +
+            scores.factuality.õpetlik;
           totalScores.functionality +=
-            scores.functionality.mistakes +
-            scores.functionality.reactionTime +
-            scores.functionality.errorManagement;
+            scores.functionality.jõudlus +
+            scores.functionality.dokumentatsioon +
+            scores.functionality.struktuur;
         });
 
         return {
@@ -263,6 +266,11 @@ app.get("/api/justresults", async (req, res) => {
 
 //preflight request
 app.options("*", cors());
+
+// Serve the frontend files
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', '../index.html'));
+});
 
 // Start Server
 const PORT = process.env.PORT || 3005;

@@ -18,115 +18,124 @@
       </select>
 
       <form id="scoreForm">
-        <h2>Kasutajakogemus & Disain</h2>
+        <h2>Disain</h2>
         <label
           >Visuaalne atraktiivsus ja ühtsus:
+          <div class="value">0</div>
           <input
             type="range"
-            name="design.visuallyAttractive"
-            max="13"
+            name="design.visuaalne"
+            max="10"
             min="0"
             step="1"
-            oninput="this.nextElementSibling.value = this.value"
-          /><output>0</output></label
-        >
+            value="0"
+          />
+        </label>
         <label
           >Interaktiivsus ja intuitiivsus:
+          <div class="value">0</div>
           <input
             type="range"
-            name="design.interactivity"
+            name="design.interaktiivne"
             max="10"
             min="0"
             step="1"
-            oninput="this.nextElementSibling.value = this.value"
-          /><output>0</output></label
-        >
+            value="0"
+          />
+        </label>
         <label
           >Animatsioonid ja illustratsioonid:
+          <div class="value">0</div>
           <input
             type="range"
-            name="design.intuitivity"
+            name="design.illustratiivne"
             max="10"
             min="0"
             step="1"
-            oninput="this.nextElementSibling.value = this.value"
-          /><output>0</output></label
-        >
+            value="0"
+          />
+        </label>
 
         <h2>Õpetlikkus ja faktitäpsus</h2>
         <label
-          >Seotus küberturbega:
+          >Aktuaalsus:
+          <div class="value">0</div>
           <input
             type="range"
-            name="factuality.actuality"
-            max="13"
-            min="0"
-            step="1"
-            oninput="this.nextElementSibling.value = this.value"
-          /><output>0</output></label
-        >
-        <label
-          >Faktide täpsus ja usaldusväärsus:
-          <input
-            type="range"
-            name="factuality.credibility"
+            name="factuality.aktuaalne"
             max="10"
             min="0"
             step="1"
-            oninput="this.nextElementSibling.value = this.value"
-          /><output>0</output></label
-        >
+            value="0"
+          />
+        </label>
         <label
-          >Õpitav väärtus:
+          >Usaldusväärsus:
+          <div class="value">0</div>
           <input
             type="range"
-            name="factuality.learningValue"
+            name="factuality.usaldusväärne"
             max="10"
             min="0"
             step="1"
-            oninput="this.nextElementSibling.value = this.value"
-          /><output>0</output></label
-        >
+            value="0"
+          />
+        </label>
+        <label
+          >Õppeväärtus:
+          <div class="value">0</div>
+          <input
+            type="range"
+            name="factuality.õpetlik"
+            max="10"
+            min="0"
+            step="1"
+            value="0"
+          />
+        </label>
 
         <h2>Funktsionaalsus ja jõudlus</h2>
         <label
-          >Vigade puudumine ja jõudlus:
+          >Jõudlus:
+          <div class="value">0</div>
           <input
             type="range"
-            name="functionality.mistakes"
-            max="13"
-            min="0"
-            step="1"
-            oninput="this.nextElementSibling.value = this.value"
-          /><output>0</output></label
-        >
-        <label
-          >Dokumentatsioon ja help:
-          <input
-            type="range"
-            name="functionality.reactionTime"
+            name="functionality.jõudlus"
             max="10"
             min="0"
             step="1"
-            oninput="this.nextElementSibling.value = this.value"
-          /><output>0</output></label
-        >
+            value="0"
+          />
+        </label>
         <label
-          >Koodi loetavus ja struktuur:
+          >Dokumentatsioon:
+          <div class="value">0</div>
           <input
             type="range"
-            name="functionality.errorManagement"
+            name="functionality.dokumentatsioon"
             max="10"
             min="0"
             step="1"
-            oninput="this.nextElementSibling.value = this.value"
-          /><output>0</output></label
-        >
+            value="0"
+          />
+        </label>
+        <label
+          >Struktuur:
+          <div class="value">0</div>
+          <input
+            type="range"
+            name="functionality.struktuur"
+            max="10"
+            min="0"
+            step="1"
+            value="0"
+          />
+        </label>
         <br />
         <button type="submit" class="button">Kinnita hinded</button>
       </form>
 
-      <a ref="results.html" class="button">Tulemused</a>
+      <a href="results.html" class="button">Tulemused</a>
     </div>
     <script src="scoring.js"></script>
   </body>
