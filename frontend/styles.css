@@ -19,6 +19,10 @@ select, button {
     width: 50%;
 }
 
+input[type="range"] {
+    width: 100%;
+}
+
 button {
     background: blue;
     color: white;
