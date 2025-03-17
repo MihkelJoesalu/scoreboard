@@ -40,7 +40,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         const sliders = scoreForm.querySelectorAll('input[type="range"]');
         sliders.forEach(slider => {
             slider.value = 0;
-            slider.nextElementSibling.textContent = 0;
+            slider.previousElementSibling.textContent = 0;
+            slider.disabled = true;
         });
     }
 
@@ -55,6 +56,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     sliders.forEach(slider => {
         slider.addEventListener("input", function () {
             updateSliderValue(slider);
+        });
+    });
+
+    // Enable sliders when a team is selected
+    teamSelect.addEventListener("change", function () {
+        const sliders = scoreForm.querySelectorAll('input[type="range"]');
+        sliders.forEach(slider => {
+            slider.disabled = !teamSelect.value;
         });
     });
 
