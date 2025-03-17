@@ -37,7 +37,8 @@ select, button {
 }
 
 input[type="range"] {
-    width: 100%;
+    width: 60%;
+    margin: 5px;
 }
 
 button {
