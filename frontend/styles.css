@@ -81,7 +81,7 @@ input[type="range"] {
     display: block;
     -webkit-appearance: none;
     background-color: #bdc3c7;
-    width: 80%; /* Make the slider narrower */
+    width: 60%; /* Make the slider narrower */
     height: 5px;
     border-radius: 5px;
     margin: 0 auto;
@@ -225,7 +225,7 @@ tr:nth-child(even) {
 }
 
 .content {
-    margin-left: 220px; /* Adjust based on sidebar width */
+    margin-left: 0px; /* Adjust based on sidebar width */
     flex: 1;
     text-align: center; /* Align content to the center */
 }
