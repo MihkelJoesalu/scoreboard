@@ -29,24 +29,24 @@ document.addEventListener("DOMContentLoaded", async function () {
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${result.team}</td>
-                <td>${result.totalScore}</td>
-                <td>${result.designScore}</td>
-                <td>${result.factualityScore}</td>
-                <td>${result.functionalityScore}</td>
+                <td>${result.total}</td>
+                <td>${result.detailedScores.design}</td>
+                <td>${result.detailedScores.factuality}</td>
+                <td>${result.detailedScores.functionality}</td>
             `;
             resultsTableBody.appendChild(row);
 
-            if (result.totalScore > bestOverall.score) {
-                bestOverall = { team: result.team, score: result.totalScore };
+            if (result.total > bestOverall.score) {
+                bestOverall = { team: result.team, score: result.total };
             }
-            if (result.designScore > bestDesign.score) {
-                bestDesign = { team: result.team, score: result.designScore };
+            if (result.detailedScores.design > bestDesign.score) {
+                bestDesign = { team: result.team, score: result.detailedScores.design };
             }
-            if (result.factualityScore > bestFactuality.score) {
-                bestFactuality = { team: result.team, score: result.factualityScore };
+            if (result.detailedScores.factuality > bestFactuality.score) {
+                bestFactuality = { team: result.team, score: result.detailedScores.factuality };
             }
-            if (result.functionalityScore > bestFunctionality.score) {
-                bestFunctionality = { team: result.team, score: result.functionalityScore };
+            if (result.detailedScores.functionality > bestFunctionality.score) {
+                bestFunctionality = { team: result.team, score: result.detailedScores.functionality };
             }
         });
 
