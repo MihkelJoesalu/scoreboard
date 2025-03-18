@@ -182,48 +182,29 @@ tr:nth-child(even) {
     margin-bottom: 20px;
 }
 
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 200px;
-    height: 60%; /* Adjusted height */
-    background-color: #e74c3c;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-}
-
-.sidebar h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    color: white;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    margin-bottom: 10px;
-}
-
-.sidebar ul li a {
-    display: block;
+.team-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     padding: 10px;
-    background-color: #c0392b;
+    background: #f3f3f3;
+    border-radius: 10px;
+  }
+  
+  .team-button {
+    padding: 10px 15px;
+    background-color: #e74c3c;
     color: white;
-    text-decoration: none;
+    border: none;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.sidebar ul li a:hover,
-.sidebar ul li a.selected {
-    background-color: #511916;
-}
-
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .team-button:hover {
+    background-color: #c0392b;
+  }
+  
 .content {
     margin-left: 0px; /* Adjust based on sidebar width */
     flex: 1;

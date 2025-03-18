@@ -252,6 +252,36 @@ app.post("/api/scores", async (req, res) => {
   }
 });
 
+app.put("/api/rate", async (req, res) => {
+  try {
+    const { judgeId, teamId, scores } = req.body;
+
+    // Validate judge
+    const judge = await Judge.findById(judgeId);
+    if (!judge) return res.status(404).json({ error: "Hindajat ei leitud" });
+
+    // Validate team
+    const team = await Team.findById(teamId);
+    if (!team) return res.status(404).json({ error: "Võistkonda ei leitud" });
+
+    // Find and update the existing score
+    const updatedScore = await Score.findOneAndUpdate(
+      { judgeName: judge._id, teamId },
+      { scores },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedScore) {
+      return res.status(404).json({ error: "Hinnet ei leitud, loo uus hinne!" });
+    }
+
+    res.status(200).json({ message: "Hinne uuendatud!", score: updatedScore });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Hinde uuendamine ebaõnnestus!" });
+  }
+});
+
 // Get Final Scores
 app.get("/api/justresults", async (req, res) => {
   try {
