@@ -9,6 +9,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    min-height: 100vh;
     color: white;
     padding-top: 40px;
 }
@@ -62,7 +63,7 @@ a.button:hover {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #c0392b;
 }
 
 select, button {
@@ -129,7 +130,7 @@ button {
     margin: 10px 0;
     font-size: 16px;
     color: #fff;
-    background-color: #007bff;
+    background-color: #e74c3c;
     text-align: center;
     text-decoration: none;
     border-radius: 5px;
@@ -161,12 +162,12 @@ th, td {
 }
 
 th {
-    background: blue;
+    background: #000022;
     color: white;
 }
 
 tr:nth-child(even) {
-    background: #f4f4f4;
+    background: #000000;
 }
 
 .top-buttons {
