@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function () {
     const API_URL = window.location.hostname === 'localhost'
         ? 'http://localhost:3005' // For local development
-        : 'https://scoreboard-production-51f7.up.railway.app'; // Replace with your actual Render URL
+        : 'https://scoreboard-production-51f7.up.railway.app'; // Replace with your actual Railway URL
 
     const resultsTableBody = document.querySelector("#resultsTable tbody");
     const bestOverallEl = document.querySelector("#bestOverall span");
@@ -16,6 +16,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
         const results = await res.json();
+
+        // Log the API response to the console for debugging
+        console.log("API response:", results);
 
         let bestOverall = { team: "", score: 0 };
         let bestDesign = { team: "", score: 0 };
