@@ -227,7 +227,7 @@ tr:nth-child(even) {
 .content {
     margin-left: 220px; /* Adjust based on sidebar width */
     flex: 1;
-    text-align: left; /* Align content to the left */
+    text-align: center; /* Align content to the center */
 }
 
 @media (max-width: 768px) {
