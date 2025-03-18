@@ -21,9 +21,9 @@ h1 {
 }
 
 h2 {
-text-align: center;
     font-size: 2em;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 p {
@@ -33,11 +33,12 @@ p {
 }
 
 .container {
-    max-width: 600px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.8); /* O8tional: Add a semi-transparent background for better readability */
+    background: rgba(0, 0, 0, 0.8); /* Optional: Add a semi-transparent background for better readability */
     border-radius: 10px;
+    text-align: center;
 }
 
 label {
@@ -179,13 +180,21 @@ tr:nth-child(even) {
 }
 
 .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 200px;
-    margin-right: 20px;
+    height: 100%;
+    background-color: #e74c3c;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
 }
 
 .sidebar h2 {
     font-size: 1.5em;
     margin-bottom: 10px;
+    color: white;
 }
 
 .sidebar ul {
@@ -200,7 +209,7 @@ tr:nth-child(even) {
 .sidebar ul li a {
     display: block;
     padding: 10px;
-    background-color: #e74c3c;
+    background-color: #c0392b;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -209,9 +218,10 @@ tr:nth-child(even) {
 
 .sidebar ul li a:hover,
 .sidebar ul li a.selected {
-    background-color: #c0392b;
+    background-color: #a8322b;
 }
 
 .content {
+    margin-left: 220px; /* Adjust based on sidebar width */
     flex: 1;
 }
