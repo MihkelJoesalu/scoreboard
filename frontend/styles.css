@@ -162,12 +162,12 @@ th, td {
 }
 
 th {
-    background: #000022;
+    background: #000000;
     color: white;
 }
 
 tr:nth-child(even) {
-    background: #000000;
+    background: #000022;
 }
 
 .top-buttons {

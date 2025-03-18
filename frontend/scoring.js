@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const API_URL = window.location.hostname === 'localhost'
         ? 'http://localhost:3005' // For local development
-        : 'https://scoreboard-u4yf.onrender.com'; // Replace with your actual Render URL
+        : 'https://scoreboard-production-51f7.up.railway.app'; // Replace with your actual Render URL
 
     // Fetch all judges
     const judgesRes = await fetch(`${API_URL}/api/judges`);
