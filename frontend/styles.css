@@ -24,10 +24,11 @@ h2 {
     font-size: 2em;
     margin-bottom: 20px;
     text-align: center;
+    text-decoration: underline;
 }
 
 p {
-    font-size: 1.2em;
+    font-size: 1em;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -44,6 +45,8 @@ p {
 label {
     display: block;
     margin-bottom: 10px;
+    font-size: 1.5em;
+    text-align: center;
 }
 
 a.button {
@@ -78,11 +81,12 @@ input[type="range"] {
     display: block;
     -webkit-appearance: none;
     background-color: #bdc3c7;
-    width: 100%;
+    width: 80%; /* Make the slider narrower */
     height: 5px;
     border-radius: 5px;
     margin: 0 auto;
     outline: 0;
+    margin-bottom: 5rem;
 }
 
 input[type="range"]:disabled {
@@ -119,7 +123,7 @@ input[type="range"]::-webkit-slider-thumb:active {
     text-align: center;
     font-weight: bold;
     font-size: 2em;
-    width: 100%;
+    width: 80%; /* Match the width of the slider */
     height: 40px;
     line-height: 40px;
     margin: 10px auto;
@@ -218,10 +222,36 @@ tr:nth-child(even) {
 
 .sidebar ul li a:hover,
 .sidebar ul li a.selected {
-    background-color: #a8322b;
+    background-color: #511916;
 }
 
 .content {
     margin-left: 220px; /* Adjust based on sidebar width */
     flex: 1;
+    text-align: left; /* Align content to the left */
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    input[type="range"] {
+        width: 100%; /* Full width on narrow screens */
+    }
+
+    .value {
+        width: 100%; /* Full width on narrow screens */
+    }
 }

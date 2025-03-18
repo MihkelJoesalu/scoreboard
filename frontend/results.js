@@ -28,6 +28,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     } catch (error) {
         console.error("Error fetching results:", error);
-        resultsTable.innerHTML = `<tr><td colspan="5">Failed to load results.</td></tr>`;
+        resultsTable.innerHTML = `<tr><td colspan="5">Tulemuste laadimine ebaõnnestus.</td></tr>`;
     }
 });
