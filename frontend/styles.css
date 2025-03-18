@@ -187,7 +187,7 @@ tr:nth-child(even) {
     top: 0;
     left: 0;
     width: 200px;
-    height: 50%; /* Adjusted height */
+    height: 60%; /* Adjusted height */
     background-color: #e74c3c;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
