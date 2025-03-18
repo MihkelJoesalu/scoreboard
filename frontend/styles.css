@@ -225,7 +225,7 @@ tr:nth-child(even) {
 }
 
 .content {
-    margin-left: 220px; /* Adjust based on sidebar width */
+    margin-left: 0px; /* Adjust based on sidebar width */
     flex: 1;
     text-align: center; /* Align content to the center */
 }
