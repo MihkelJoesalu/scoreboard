@@ -52,6 +52,41 @@ document.addEventListener("DOMContentLoaded", async function () {
         teamList.appendChild(li);
     });
 
+        // Fetch rated teams for this judge
+        const ratedTeamsRes = await fetch(`${API_URL}/api/rated-teams/${judgeData.name}`);
+        const ratedTeams = await ratedTeamsRes.json();
+    
+        ratedTeams.forEach(team => {
+            let li = document.createElement("li");
+            let a = document.createElement("a");
+            a.href = "#";
+            a.textContent = `${team.teamName} (Rated)`;
+            a.dataset.teamId = team.teamId;
+    
+            // Display team score when clicked
+            a.addEventListener("click", function (event) {
+                event.preventDefault();
+    
+                // Prefill the score form with the existing scores
+                const sliders = scoreForm.querySelectorAll('input[type="range"]');
+                sliders.forEach(slider => {
+                    slider.disabled = false;
+                    const scoreType = slider.name.split('.')[0]; // design, factuality, or functionality
+                    const scoreSubType = slider.name.split('.')[1]; // visuaalne, interaktiivne, etc.
+    
+                    slider.value = team.scores[scoreType][scoreSubType] || 0;
+                    slider.previousElementSibling.textContent = slider.value;
+                });
+    
+                const links = ratedTeamsList.querySelectorAll("a");
+                links.forEach(link => link.classList.remove("selected"));
+                a.classList.add("selected");
+            });
+    
+            li.appendChild(a);
+            ratedTeamsList.appendChild(li); // Append to a different list for rated teams
+        });
+
     // Function to reset sliders
     function resetSliders() {
         const sliders = scoreForm.querySelectorAll('input[type="range"]');

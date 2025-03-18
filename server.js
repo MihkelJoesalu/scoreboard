@@ -99,6 +99,32 @@ app.get("/api/unrated-teams/:judgeName", async (req, res) => {
   }
 });
 
+// Teams that the judge has already rated
+app.get("/api/rated-teams/:judgeName", async (req, res) => {
+  try {
+    const judgeName = req.params.judgeName;
+
+    // Find the judge by name
+    const judge = await Judge.findOne({ name: judgeName });
+    if (!judge) return res.status(404).json({ error: "Judge not found" });
+
+    // Find all the scores for the judge
+    const ratedScores = await Score.find({ judgeName: judge._id }).populate("teamId");
+
+    // Format the response with team and scores
+    const ratedTeams = ratedScores.map(score => ({
+      teamId: score.teamId._id,
+      teamName: score.teamId.name,
+      scores: score.scores,  // Include the scores here
+    }));
+
+    res.json(ratedTeams);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch rated teams" });
+  }
+});
+
 // Register Judge
 app.post("/api/judges", async (req, res) => {
   try {
