@@ -2,8 +2,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     const judgeId = localStorage.getItem("judgeId");
     const judgeName = localStorage.getItem("judgeName");
     const judgeNameEl = document.getElementById("judgeName");
-    const teamSelect = document.getElementById("teamSelect");
+    const teamList = document.getElementById("teamList");
     const scoreForm = document.getElementById("scoreForm");
+    const submitScoresLink = document.getElementById("submitScores");
 
     const API_URL = window.location.hostname === 'localhost'
         ? 'http://localhost:3005' // For local development
@@ -23,16 +24,32 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Display judge's name
     judgeNameEl.textContent = `Hindaja: ${judgeData.name}`;
-
+    
     // Fetch teams that haven't been rated by this judge
     const teamsRes = await fetch(`${API_URL}/api/unrated-teams/${judgeData.name}`);
     const teams = await teamsRes.json();
 
     teams.forEach(team => {
-        let option = document.createElement("option");
-        option.value = team._id;
-        option.textContent = team.name;
-        teamSelect.appendChild(option);
+        let li = document.createElement("li");
+        let a = document.createElement("a");
+        a.href = "#";
+        a.textContent = team.name;
+        a.dataset.teamId = team._id;
+
+        a.addEventListener("click", function (event) {
+            event.preventDefault();
+            const links = teamList.querySelectorAll("a");
+            links.forEach(link => link.classList.remove("selected"));
+            a.classList.add("selected");
+
+            const sliders = scoreForm.querySelectorAll('input[type="range"]');
+            sliders.forEach(slider => {
+                slider.disabled = false;
+            });
+        });
+
+        li.appendChild(a);
+        teamList.appendChild(li);
     });
 
     // Function to reset sliders
@@ -59,24 +76,17 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     });
 
-    // Enable sliders when a team is selected
-    teamSelect.addEventListener("change", function () {
-        const sliders = scoreForm.querySelectorAll('input[type="range"]');
-        sliders.forEach(slider => {
-            slider.disabled = !teamSelect.value;
-        });
-    });
-
-    // Submit score
-    scoreForm.addEventListener("submit", async function (event) {
+    // Handle form submission when the link is clicked
+    submitScoresLink.addEventListener("click", async function (event) {
         event.preventDefault();
 
-        const teamId = teamSelect.value;
-        if (!teamId) {
-            alert("Palun vali meeskond");
+        const selectedTeam = teamList.querySelector("a.selected");
+        if (!selectedTeam) {
+            alert("Please select a team");
             return;
         }
 
+        const teamId = selectedTeam.dataset.teamId;
         const formData = new FormData(scoreForm);
         let scores = {
             design: {
@@ -106,14 +116,14 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (response.ok) {
             alert("Hindamine õnnestus!");
 
-            // Remove rated team from dropdown
-            teamSelect.querySelector(`option[value="${teamId}"]`).remove();
+            // Remove rated team from list
+            selectedTeam.parentElement.remove();
 
             // Reset sliders
             resetSliders();
 
             // If all teams are rated, go to results page
-            if (teamSelect.options.length === 1) {
+            if (teamList.children.length === 0) {
                 window.location.href = "results.html";
             }
         } else {
