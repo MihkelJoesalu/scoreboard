@@ -119,7 +119,6 @@ input[type="range"]::-webkit-slider-thumb:active {
 }
 
 .value {
-    border-bottom: 4px dashed #bdc3c7;
     text-align: center;
     font-weight: bold;
     font-size: 2em;

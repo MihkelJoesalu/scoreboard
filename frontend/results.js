@@ -1,33 +1,57 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    const resultsTable = document.querySelector("#resultsTable tbody");
-
-    // Define your API base URL
     const API_URL = window.location.hostname === 'localhost'
         ? 'http://localhost:3005' // For local development
         : 'https://scoreboard-production-51f7.up.railway.app'; // Replace with your actual Render URL
 
+    const resultsTableBody = document.querySelector("#resultsTable tbody");
+    const bestOverallEl = document.querySelector("#bestOverall span");
+    const bestDesignEl = document.querySelector("#bestDesign span");
+    const bestFactualityEl = document.querySelector("#bestFactuality span");
+    const bestFunctionalityEl = document.querySelector("#bestFunctionality span");
+
+    // Fetch results from API
     try {
-        const response = await fetch(`${API_URL}/api/results`);
-        const results = await response.json();
+        const res = await fetch(`${API_URL}/api/results`);
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const results = await res.json();
 
-        // Sort results by total score in descending order
-        results.sort((a, b) => b.total - a.total);
+        let bestOverall = { team: "", score: 0 };
+        let bestDesign = { team: "", score: 0 };
+        let bestFactuality = { team: "", score: 0 };
+        let bestFunctionality = { team: "", score: 0 };
 
-        results.forEach(team => {
+        results.forEach(result => {
             const row = document.createElement("tr");
-
             row.innerHTML = `
-                <td>${team.team}</td>
-                <td>${team.total}</td>
-                <td>${team.detailedScores.design}</td>
-                <td>${team.detailedScores.factuality}</td>
-                <td>${team.detailedScores.functionality}</td>
+                <td>${result.team}</td>
+                <td>${result.totalScore}</td>
+                <td>${result.designScore}</td>
+                <td>${result.factualityScore}</td>
+                <td>${result.functionalityScore}</td>
             `;
+            resultsTableBody.appendChild(row);
 
-            resultsTable.appendChild(row);
+            if (result.totalScore > bestOverall.score) {
+                bestOverall = { team: result.team, score: result.totalScore };
+            }
+            if (result.designScore > bestDesign.score) {
+                bestDesign = { team: result.team, score: result.designScore };
+            }
+            if (result.factualityScore > bestFactuality.score) {
+                bestFactuality = { team: result.team, score: result.factualityScore };
+            }
+            if (result.functionalityScore > bestFunctionality.score) {
+                bestFunctionality = { team: result.team, score: result.functionalityScore };
+            }
         });
-    } catch (error) {
-        console.error("Error fetching results:", error);
-        resultsTable.innerHTML = `<tr><td colspan="5">Tulemuste laadimine ebaõnnestus.</td></tr>`;
+
+        bestOverallEl.textContent = bestOverall.team;
+        bestDesignEl.textContent = bestDesign.team;
+        bestFactualityEl.textContent = bestFactuality.team;
+        bestFunctionalityEl.textContent = bestFunctionality.team;
+    } catch (err) {
+        console.error("Error fetching results:", err);
     }
 });

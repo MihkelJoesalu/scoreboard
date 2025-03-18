@@ -9,26 +9,35 @@
 
   <body>
     <div class="container">
+      <div class="top-buttons">
         <a href="../index.html" class="button">Pealehele</a>
         <a href="score.html" class="button">Hindamise lehele</a>
+      </div>
       <h1>Tulemused</h1>
       <div class="table-container">
-      <table id="resultsTable">
-        <thead>
-          <tr>
-            <th>Võistkond</th>
-            <th>Lõplik punktiseis</th>
-            <th>Kasutajakogemus ja Disain</th>
-            <th>Õpetlikkus ja faktitäpsus</th>
-            <th>Funktsionaalsus ja jõudlus</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Siia tulevad tulemused -->
-        </tbody>
-      </table>
+        <table id="resultsTable">
+          <thead>
+            <tr>
+              <th>Võistkond</th>
+              <th>Lõplik punktiseis</th>
+              <th>Kasutajakogemus ja Disain</th>
+              <th>Õpetlikkus ja faktitäpsus</th>
+              <th>Funktsionaalsus ja jõudlus</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Siia tulevad tulemused -->
+          </tbody>
+        </table>
+      </div>
+      <div id="bestTeams">
+        <h2>Parimad võistkonnad</h2>
+        <p id="bestOverall">Parim võistkond kokku: <span></span></p>
+        <p id="bestDesign">Parim võistkond disainis: <span></span></p>
+        <p id="bestFactuality">Parim võistkond õpetlikkuses: <span></span></p>
+        <p id="bestFunctionality">Parim võistkond funktsionaalsuses: <span></span></p>
+      </div>
     </div>
-  </div>
     <script src="results.js"></script>
   </body>
 </html>
