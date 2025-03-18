@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const teamId = teamSelect.value;
         if (!teamId) {
-            alert("Please select a team");
+            alert("Palun vali meeskond");
             return;
         }
 

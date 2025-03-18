@@ -5,22 +5,34 @@
 
 body {
     font-family: "Dosis", Helvetica, Arial, sans-serif;
-    background: #ecf0f1;
-    color: #34495e;
+    background-image: url('assets/background.jpeg');
+    background-size: cover;
+    background-position: center;
+    color: white;
     padding-top: 40px;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
 }
 
 h2 {
     text-align: center;
-    font-size: xx-large;
-    margin-bottom: 5px;
+    font-size: 2em;
+    margin-bottom: 20px;
 }
+
+p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
 .container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.5); /* Optional: Add a semi-transparent background for better readability */
     border-radius: 10px;
     text-align: center;
 }
@@ -32,19 +44,20 @@ label {
 
 a.button {
     display: inline-block;
-    padding: 10px 20px;
-    margin: 10px 0;
-    font-size: 16px;
+    padding: 20px 40px;
+    margin: 20px;
+    font-size: 24px;
     color: #fff;
-    background-color: #007bff;
+    background-color: #e74c3c;
     text-align: center;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 10px;
     transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
 a.button:hover {
-    background-color: #0056b3;
+    background-color: #c0392b;
 }
 
 button:hover {
