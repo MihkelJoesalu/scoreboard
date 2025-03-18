@@ -33,7 +33,7 @@ p {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.5); /* Optional: Add a semi-transparent background for better readability */
+    background: rgba(0, 0, 0, 0.8); /* Optional: Add a semi-transparent background for better readability */
     border-radius: 10px;
     text-align: center;
 }
