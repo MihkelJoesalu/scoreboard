@@ -15,137 +15,141 @@
       <h1>Hindamise leht</h1>
       <p id="judgeName"></p>
 
-      <label for="teamSelect">Vali meeskond:</label>
-      <select id="teamSelect">
-        <option value="">-- Vali meeskond --</option>
-      </select>
+      <div class="sidebar">
+        <h2>Vali meeskond:</h2>
+        <ul id="teamList">
+          <!-- Team buttons will be dynamically added here -->
+        </ul>
+      </div>
 
-      <form id="scoreForm">
-        <h2>Kasutajakogemus ja Disain</h2>
-        <label
-          >Visuaalne atraktiivsus ja ühtsus:
-          <div class="value">0</div>
-          <input
-            type="range"
-            name="design.visuaalne"
-            max="13"
-            min="0"
-            step="1"
-            value="0"
-            disabled
-          />
-        </label>
-        <label
-          >Interaktiivsus ja intuitiivsus:
-          <div class="value">0</div>
-          <input
-            type="range"
-            name="design.interaktiivne"
-            max="10"
-            min="0"
-            step="1"
-            value="0"
-            disabled
-          />
-        </label>
-        <label
-          >Animatsioonid ja illustratsioonid:
-          <div class="value">0</div>
-          <input
-            type="range"
-            name="design.illustratiivne"
-            max="10"
-            min="0"
-            step="1"
-            value="0"
-            disabled
-          />
-        </label>
+      <div class="content">
+        <form id="scoreForm">
+          <h2>Kasutajakogemus ja Disain</h2>
+          <label
+            >Visuaalne atraktiivsus ja ühtsus:
+            <div class="value">0</div>
+            <input
+              type="range"
+              name="design.visuaalne"
+              max="13"
+              min="0"
+              step="1"
+              value="0"
+              disabled
+            />
+          </label>
+          <label
+            >Interaktiivsus ja intuitiivsus:
+            <div class="value">0</div>
+            <input
+              type="range"
+              name="design.interaktiivne"
+              max="10"
+              min="0"
+              step="1"
+              value="0"
+              disabled
+            />
+          </label>
+          <label
+            >Animatsioonid ja illustratsioonid:
+            <div class="value">0</div>
+            <input
+              type="range"
+              name="design.illustratiivne"
+              max="10"
+              min="0"
+              step="1"
+              value="0"
+              disabled
+            />
+          </label>
 
-        <h2>Õpetlikkus ja faktitäpsus</h2>
-        <label
-          >Aktuaalsus:
-          <div class="value">0</div>
-          <input
-            type="range"
-            name="factuality.aktuaalne"
-            max="13"
-            min="0"
-            step="1"
-            value="0"
-            disabled
-          />
-        </label>
-        <label
-          >Usaldusväärsus:
-          <div class="value">0</div>
-          <input
-            type="range"
-            name="factuality.usaldusväärne"
-            max="10"
-            min="0"
-            step="1"
-            value="0"
-            disabled
-          />
-        </label>
-        <label
-          >Õppeväärtus:
-          <div class="value">0</div>
-          <input
-            type="range"
-            name="factuality.õpetlik"
-            max="10"
-            min="0"
-            step="1"
-            value="0"
-            disabled
-          />
-        </label>
+          <h2>Õpetlikkus ja faktitäpsus</h2>
+          <label
+            >Aktuaalsus:
+            <div class="value">0</div>
+            <input
+              type="range"
+              name="factuality.aktuaalne"
+              max="13"
+              min="0"
+              step="1"
+              value="0"
+              disabled
+            />
+          </label>
+          <label
+            >Usaldusväärsus:
+            <div class="value">0</div>
+            <input
+              type="range"
+              name="factuality.usaldusväärne"
+              max="10"
+              min="0"
+              step="1"
+              value="0"
+              disabled
+            />
+          </label>
+          <label
+            >Õppeväärtus:
+            <div class="value">0</div>
+            <input
+              type="range"
+              name="factuality.õpetlik"
+              max="10"
+              min="0"
+              step="1"
+              value="0"
+              disabled
+            />
+          </label>
 
-        <h2>Funktsionaalsus ja jõudlus</h2>
-        <label
-          >Jõudlus:
-          <div class="value">0</div>
-          <input
-            type="range"
-            name="functionality.jõudlus"
-            max="13"
-            min="0"
-            step="1"
-            value="0"
-            disabled
-          />
-        </label>
-        <label
-          >Dokumentatsioon:
-          <div class="value">0</div>
-          <input
-            type="range"
-            name="functionality.dokumentatsioon"
-            max="10"
-            min="0"
-            step="1"
-            value="0"
-            disabled
-          />
-        </label>
-        <label
-          >Struktuur:
-          <div class="value">0</div>
-          <input
-            type="range"
-            name="functionality.struktuur"
-            max="10"
-            min="0"
-            step="1"
-            value="0"
-            disabled
-          />
-        </label>
-        <br />
-        <button type="submit" class="button">Kinnita hinded</button>
-      </form>
+          <h2>Funktsionaalsus ja jõudlus</h2>
+          <label
+            >Jõudlus:
+            <div class="value">0</div>
+            <input
+              type="range"
+              name="functionality.jõudlus"
+              max="13"
+              min="0"
+              step="1"
+              value="0"
+              disabled
+            />
+          </label>
+          <label
+            >Dokumentatsioon:
+            <div class="value">0</div>
+            <input
+              type="range"
+              name="functionality.dokumentatsioon"
+              max="10"
+              min="0"
+              step="1"
+              value="0"
+              disabled
+            />
+          </label>
+          <label
+            >Struktuur:
+            <div class="value">0</div>
+            <input
+              type="range"
+              name="functionality.struktuur"
+              max="10"
+              min="0"
+              step="1"
+              value="0"
+              disabled
+            />
+          </label>
+          <br />
+          <a href="#" id="submitScores" class="button">Kinnita hinded</a>
+        </form>
+      </div>
     </div>
     <script src="scoring.js"></script>
   </body>
