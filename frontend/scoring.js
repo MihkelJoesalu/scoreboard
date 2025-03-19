@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const judgeName = localStorage.getItem("judgeName");
   const judgeNameEl = document.getElementById("judgeName");
   const teamList = document.getElementById("teamList");
+  const ratedTeamList = document.getElementById("ratedTeamList");
   const scoreForm = document.getElementById("scoreForm");
   const submitScoresButton = document.getElementById("submitScores");
 
@@ -175,16 +176,15 @@ document.addEventListener("DOMContentLoaded", async function () {
       });
 
       if (response.ok) {
-        alert(isAlreadyRated ? "Hinded uuendatud!" : "Hindamine õnnestus!");
+        alert(selectedTeam.rated ? "Hinded uuendatud!" : "Hindamine õnnestus!");
 
-        if (!isAlreadyRated) {
-            // Move the team from unrated to rated list
-            const newTeamElement = createTeamListItem(selectedTeam, true);
-            selectedTeam.element.remove();
-            ratedTeamList.appendChild(newTeamElement);
-            selectedTeam.element = newTeamElement; // Update the DOM reference
-          }
-
+        if (!selectedTeam.rated) {
+          const newTeamElement = createTeamListItem(selectedTeam, true);
+          selectedTeam.element.remove();
+          ratedTeamList.appendChild(newTeamElement);
+          selectedTeam.element = newTeamElement;
+        }
+        
     // Update the selectedTeam object with the new scores
       selectedTeam.scores = scores;
 
@@ -192,8 +192,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       resetSliders();
       updateSliders(scores);
       selectedTeam.element.querySelector("a").classList.add("selected");
-      submitScoresButton.textContent = "Muuda hindeid";
-
       } else {
         const errorData = await response.json();
         alert(errorData.error || "Hindamisel tekkis viga!");
