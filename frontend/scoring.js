@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const judgeNameEl = document.getElementById("judgeName");
     const teamList = document.getElementById("teamList");
     const scoreForm = document.getElementById("scoreForm");
-    const submitScoresLink = document.getElementById("submitScores");
+    const submitScoresButton = document.getElementById("submitScores");
 
     const API_URL = window.location.hostname === 'localhost'
         ? 'http://localhost:3005' // For local development
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         
             selectedTeam = team;
             isRatedTeam = isRated;
-        
+            
             // Enable sliders
             enableSliders();
         
@@ -101,17 +101,17 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     }
 
-// Function to update sliders with existing scores
-function updateSliders(scores) {
-    const sliders = scoreForm.querySelectorAll('input[type="range"]');
-    sliders.forEach(slider => {
-        const [category, type] = slider.name.split('.');
-        if (scores[category] && scores[category][type] !== undefined) {
-            slider.value = scores[category][type];
-            slider.previousElementSibling.textContent = scores[category][type];
+    // Function to update sliders with existing scores
+    function updateSliders(scores) {
+        const sliders = scoreForm.querySelectorAll('input[type="range"]');
+        sliders.forEach(slider => {
+            const [category, type] = slider.name.split('.');
+            if (scores[category] && scores[category][type] !== undefined) {
+                slider.value = scores[category][type];
+                slider.previousElementSibling.textContent = scores[category][type];
         }
-    });
-}
+        });
+    }
 
     // Add event listeners to update slider value display
     const sliders = scoreForm.querySelectorAll('input[type="range"]');
@@ -174,8 +174,8 @@ function updateSliders(scores) {
                     selectedTeam.parentElement.remove();
                     ratedTeamList.appendChild(createTeamListItem(selectedTeam, true));
                 }
-    
                 resetSliders();
+
                 submitScoresButton.textContent = "Kinnita hinded";
             } else {
                 const errorData = await response.json();
