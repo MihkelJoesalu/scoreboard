@@ -65,8 +65,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       selectedTeam = team;
       // Enable sliders if unrated, else do nothing
       if (!team.rated) {
-        enableSliders();
-        resetSliders();
+        resetSliders(); // Reset the sliders first
+        enableSliders(); // Then enable the sliders
         submitScoresButton.textContent = "Kinnita hinded"; // Default button text
       } else {
         submitScoresButton.textContent = "Muuda hindeid"; // Change button text
@@ -80,16 +80,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   // Populate all teams into the list
   allTeams.forEach((team) => teamList.appendChild(createTeamListItem(team)));
-
-  // Populate Unrated Teams List
-  unratedTeams.forEach((team) =>
-    teamList.appendChild(createTeamListItem(team, false))
-  );
-
-  // Populate Rated Teams List
-  ratedTeams.forEach((team) =>
-    ratedTeamList.appendChild(createTeamListItem(team, true))
-  );
 
   // Function to enable sliders
   function enableSliders() {
