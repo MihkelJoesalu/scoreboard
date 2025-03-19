@@ -25,67 +25,56 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Display judge's name
     judgeNameEl.textContent = `Hindaja: ${judgeData.name}`;
     
-    // Fetch teams that haven't been rated by this judge
-    const teamsRes = await fetch(`${API_URL}/api/unrated-teams/${judgeData.name}`);
-    const teams = await teamsRes.json();
+       // Fetch unrated and rated teams
+       const [unratedRes, ratedRes] = await Promise.all([
+        fetch(`${API_URL}/api/unrated-teams/${judgeData.name}`),
+        fetch(`${API_URL}/api/rated-teams/${judgeData.name}`)
+    ]);
 
-    teams.forEach(team => {
+    const unratedTeams = await unratedRes.json();
+    const ratedTeams = await ratedRes.json();
+
+    function createTeamListItem(team, isRated = false) {
         let li = document.createElement("li");
         let a = document.createElement("a");
         a.href = "#";
-        a.textContent = team.name;
-        a.dataset.teamId = team._id;
+        a.textContent = team.teamName || team.name; // Handle different response formats
+        a.dataset.teamId = team.teamId || team._id;
+        a.dataset.rated = isRated; // Mark rated teams
 
         a.addEventListener("click", function (event) {
             event.preventDefault();
-            const links = teamList.querySelectorAll("a");
-            links.forEach(link => link.classList.remove("selected"));
+
+            // Unselect teams from the other list
+            if (isRated) {
+                teamList.querySelectorAll("a").forEach(link => link.classList.remove("selected"));
+            } else {
+                ratedTeamList.querySelectorAll("a").forEach(link => link.classList.remove("selected"));
+            }
+
+            // Highlight selected team
+            document.querySelectorAll("#teamList a, #ratedTeamList a").forEach(link => link.classList.remove("selected"));
             a.classList.add("selected");
 
-            const sliders = scoreForm.querySelectorAll('input[type="range"]');
-            sliders.forEach(slider => {
-                slider.disabled = false;
-            });
+            selectedTeam = team;
+            isRatedTeam = isRated;
+
+            if (isRated) {
+                updateSliders(team.scores);
+            } else {
+                resetSliders();
+            }
         });
 
         li.appendChild(a);
-        teamList.appendChild(li);
-    });
+        return li;
+    }
 
-        // Fetch rated teams for this judge
-        const ratedTeamsRes = await fetch(`${API_URL}/api/rated-teams/${judgeData.name}`);
-        const ratedTeams = await ratedTeamsRes.json();
-    
-        ratedTeams.forEach(team => {
-            let li = document.createElement("li");
-            let a = document.createElement("a");
-            a.href = "#";
-            a.textContent = `${team.teamName} (Hinnatud)`;
-            a.dataset.teamId = team.teamId;
-    
-            // Display team score when clicked
-            a.addEventListener("click", function (event) {
-                event.preventDefault();
-    
-                // Prefill the score form with the existing scores
-                const sliders = scoreForm.querySelectorAll('input[type="range"]');
-                sliders.forEach(slider => {
-                    slider.disabled = false;
-                    const scoreType = slider.name.split('.')[0]; // design, factuality, or functionality
-                    const scoreSubType = slider.name.split('.')[1]; // visuaalne, interaktiivne, etc.
-    
-                    slider.value = team.scores[scoreType][scoreSubType] || 0;
-                    slider.previousElementSibling.textContent = slider.value;
-                });
-    
-                const links = ratedTeamsList.querySelectorAll("a");
-                links.forEach(link => link.classList.remove("selected"));
-                a.classList.add("selected");
-            });
-    
-            li.appendChild(a);
-            ratedTeamsList.appendChild(li); // Append to a different list for rated teams
-        });
+    // Populate Unrated Teams List
+    unratedTeams.forEach(team => teamList.appendChild(createTeamListItem(team, false)));
+
+    // Populate Rated Teams List
+    ratedTeams.forEach(team => ratedTeamList.appendChild(createTeamListItem(team, true)));
 
     // Function to reset sliders
     function resetSliders() {
