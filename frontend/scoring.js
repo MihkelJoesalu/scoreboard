@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             let li = document.createElement("li");
             let a = document.createElement("a");
             a.href = "#";
-            a.textContent = `${team.teamName} (Rated)`;
+            a.textContent = `${team.teamName} (Hinnatud)`;
             a.dataset.teamId = team.teamId;
     
             // Display team score when clicked

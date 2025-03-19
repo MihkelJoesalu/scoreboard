@@ -205,6 +205,22 @@ tr:nth-child(even) {
     background-color: #c0392b;
   }
   
+  .team-buttons-container a.selected {
+    background-color: #e74c3c; /* Highlight color */
+    color: white;
+    font-weight: bold;
+    border: 2px solid #c0392b;
+    border-radius: 5px;
+    padding: 10px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.team-buttons-container a.selected:hover {
+    background-color: #c0392b; /* Darker highlight on hover */
+}
 .content {
     margin-left: 0px; /* Adjust based on sidebar width */
     flex: 1;
