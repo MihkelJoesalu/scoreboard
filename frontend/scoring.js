@@ -65,17 +65,20 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Store the DOM element reference in the selectedTeam object
     selectedTeam = { ...team, element: li };
+    console.log("Selected team after submission:", selectedTeam);
 
-      // Enable sliders if unrated, else do nothing
-      if (!team.rated) {
+    // Enable sliders and update them with scores
+    if (!team.rated) {
         resetSliders(); // Reset the sliders first
         enableSliders(); // Then enable the sliders
         submitScoresButton.textContent = "Kinnita hinded"; // Default button text
       } else {
-        submitScoresButton.textContent = "Muuda hindeid"; // Change button text
+        enableSliders(); // Enable sliders for rated teams
         updateSliders(team.scores); // Load existing scores for rated teams
+        submitScoresButton.textContent = "Muuda hindeid"; // Change button text
       }
     });
+
     li.appendChild(a);
     return li;
   }
@@ -176,22 +179,24 @@ document.addEventListener("DOMContentLoaded", async function () {
       });
 
       if (response.ok) {
-        alert(selectedTeam.rated ? "Hinded uuendatud!" : "Hindamine õnnestus!");
+        alert(isAlreadyRated ? "Hinded uuendatud!" : "Hindamine õnnestus!");
 
         if (!selectedTeam.rated) {
-          const newTeamElement = createTeamListItem(selectedTeam, true);
-          selectedTeam.element.remove();
-          ratedTeamList.appendChild(newTeamElement);
-          selectedTeam.element = newTeamElement;
-        }
-        
+            // Move the team from unrated to rated list
+            const newTeamElement = createTeamListItem(selectedTeam, true);
+            selectedTeam.element.remove(); // Remove from unrated list
+            ratedTeamList.appendChild(newTeamElement); // Add to rated list
+            selectedTeam.element = newTeamElement; // Update DOM reference
+            selectedTeam.rated = true; // Mark the team as rated
+          }
+
     // Update the selectedTeam object with the new scores
       selectedTeam.scores = scores;
 
       // Update sliders and reselect the team
-      resetSliders();
       updateSliders(scores);
       selectedTeam.element.querySelector("a").classList.add("selected");
+      submitScoresButton.textContent = "Muuda hindeid";
       } else {
         const errorData = await response.json();
         alert(errorData.error || "Hindamisel tekkis viga!");
