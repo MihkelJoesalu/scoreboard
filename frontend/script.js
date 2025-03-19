@@ -35,11 +35,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.error("Error fetching judges:", err);
     }
 
-    // Enable button when a judge is selected
-    judgeSelect.addEventListener("change", function () {
-        startBtn.disabled = !judgeSelect.value;
-    });
-
     // Save selected judge and go to scoring page
     startBtn.addEventListener("click", function () {
         localStorage.setItem("judgeId", judgeSelect.value);
