@@ -222,7 +222,6 @@ tr:nth-child(even) {
     flex-wrap: wrap;
     gap: 10px;
     padding: 10px;
-    background: #f3f3f3;
     border-radius: 10px;
   }
   
@@ -286,7 +285,7 @@ tr:nth-child(even) {
     background-color: red; /* Red background for selected team */
     color: white; /* White text for selected team */
     font-weight: bold; /* Bold text for selected team */
-    
+
 @media (max-width: 768px) {
     .container {
         padding: 10px;
