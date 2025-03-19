@@ -82,6 +82,14 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Populate Rated Teams List
     ratedTeams.forEach(team => ratedTeamList.appendChild(createTeamListItem(team, true)));
+   
+    // Function to enable sliders
+    function enableSliders() {
+        const sliders = scoreForm.querySelectorAll('input[type="range"]');
+        sliders.forEach(slider => {
+            slider.disabled = false; // Enable the slider
+        });
+    }
 
     // Function to reset sliders
     function resetSliders() {
@@ -93,17 +101,23 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     }
 
-    // Function to update slider value display
-    function updateSliderValue(slider) {
-        const valueDisplay = slider.previousElementSibling;
-        valueDisplay.textContent = slider.value;
-    }
+// Function to update sliders with existing scores
+function updateSliders(scores) {
+    const sliders = scoreForm.querySelectorAll('input[type="range"]');
+    sliders.forEach(slider => {
+        const [category, type] = slider.name.split('.');
+        if (scores[category] && scores[category][type] !== undefined) {
+            slider.value = scores[category][type];
+            slider.previousElementSibling.textContent = scores[category][type];
+        }
+    });
+}
 
     // Add event listeners to update slider value display
     const sliders = scoreForm.querySelectorAll('input[type="range"]');
     sliders.forEach(slider => {
         slider.addEventListener("input", function () {
-            updateSliderValue(slider);
+            slider.previousElementSibling.textContent = slider.value;
         });
     });
 
