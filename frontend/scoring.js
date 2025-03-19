@@ -17,11 +17,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Find the judge by ID or Name
     const judgeData = judges.find(judge => judge._id === judgeId || judge.name === judgeName);
 
-    if (!judgeData) {
-        console.error("Judge not found");
-        return;
-    }
-
     // Display judge's name
     judgeNameEl.textContent = `Hindaja: ${judgeData.name}`;
     
@@ -45,13 +40,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         a.addEventListener("click", function (event) {
             event.preventDefault();
         
-            // Unselect teams from other list
-            if (isRated) {
-                teamList.querySelectorAll("a").forEach(link => link.classList.remove("selected"));
-            } else {
-                ratedTeamList.querySelectorAll("a").forEach(link => link.classList.remove("selected"));
-            }
-        
             // Highlight selected team
             document.querySelectorAll("#teamList a, #ratedTeamList a").forEach(link => link.classList.remove("selected"));
             a.classList.add("selected");
@@ -70,6 +58,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 resetSliders();
                 submitScoresButton.textContent = "Kinnita hinded";  // Default button text
             }
+            console.log(selectedTeam)
         });
         
 
@@ -123,6 +112,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     submitScoresButton.addEventListener("click", async function (event) {
         event.preventDefault();
+        console.log(team.teamName || team.name)
     
         if (!selectedTeam) {
             alert("Palun vali tiim!");

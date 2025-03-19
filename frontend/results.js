@@ -17,9 +17,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
         const results = await res.json();
 
-        // Log the API response to the console for debugging
-        console.log("API response:", results);
-
         let bestOverall = { team: "", score: 0 };
         let bestDesign = { team: "", score: 0 };
         let bestFactuality = { team: "", score: 0 };
