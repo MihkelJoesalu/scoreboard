@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Highlight selected team
     document
-      .querySelectorAll("#teamList a, #ratedTeamList a")
+      .querySelectorAll("#teamList a")
       .forEach((link) => link.classList.remove("selected"));
     a.classList.add("selected");
 
@@ -179,24 +179,37 @@ document.addEventListener("DOMContentLoaded", async function () {
       });
 
       if (response.ok) {
-        alert(isAlreadyRated ? "Hinded uuendatud!" : "Hindamine õnnestus!");
-
-        if (!selectedTeam.rated) {
-            // Move the team from unrated to rated list
-            const newTeamElement = createTeamListItem(selectedTeam, true);
-            selectedTeam.element.remove(); // Remove from unrated list
-            ratedTeamList.appendChild(newTeamElement); // Add to rated list
-            selectedTeam.element = newTeamElement; // Update DOM reference
-            selectedTeam.rated = true; // Mark the team as rated
+        alert(selectedTeam.rated ? "Hinded uuendatud!" : "Hindamine õnnestus!");
+  
+        // Fetch updated results from the database
+        const updatedTeamsRes = await fetch(`${API_URL}/api/teams/${judgeData.name}`);
+        const updatedTeams = await updatedTeamsRes.json();
+  
+        // Update the allTeams array
+        allTeams.length = 0; // Clear the existing array
+        updatedTeams.forEach((team) => allTeams.push(team));
+  
+        // Update the UI
+        teamList.innerHTML = ""; // Clear the current list
+        allTeams.forEach((team) => teamList.appendChild(createTeamListItem(team))); // Rebuild the list
+  
+        // Reselect the team
+        const updatedSelectedTeam = allTeams.find(
+          (team) => team.teamId === teamId || team._id === teamId
+        );
+        if (updatedSelectedTeam) {
+          const teamElement = document.querySelector(
+            `#teamList a[data-team-id="${teamId}"]`
+          );
+          if (teamElement) {
+            teamElement.classList.add("selected");
+            selectedTeam = { ...updatedSelectedTeam, element: teamElement.parentElement };
+            updateSliders(updatedSelectedTeam.scores);
+            submitScoresButton.textContent = updatedSelectedTeam.rated
+              ? "Muuda hindeid"
+              : "Kinnita hinded";
           }
-
-    // Update the selectedTeam object with the new scores
-      selectedTeam.scores = scores;
-
-      // Update sliders and reselect the team
-      updateSliders(scores);
-      selectedTeam.element.querySelector("a").classList.add("selected");
-      submitScoresButton.textContent = "Muuda hindeid";
+        }
       } else {
         const errorData = await response.json();
         alert(errorData.error || "Hindamisel tekkis viga!");
