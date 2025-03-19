@@ -21,53 +21,55 @@
       <div id="ratedTeamsList" class="team-buttons-container"></div>
       <div class="content">
         <form id="scoreForm">
-          <h2>Kasutajakogemus ja Disain</h2>
-          <label
-            >Visuaalne atraktiivsus ja ühtsus:
-            <p>Kas disain on professionaalne, ühtne ja
-              esteetiliselt meeldiv?</p>
-            <div class="value">0</div>
-            <input
-              type="range"
-              name="design.visuaalne"
-              max="11"
-              min="0"
-              step="1"
-              value="0"
-              disabled
-            />
-          </label>
-          <label
-            >Interaktiivsus ja intuitiivsus:
-            <p>Kas funktsioonid on interaktiivsed? Kas mäng
-              on kaasahaarav ja õpetuseta mängitav?</p>
-            <div class="value">0</div>
-            <input
-              type="range"
-              name="design.interaktiivne"
-              max="11"
-              min="0"
-              step="1"
-              value="0"
-              disabled
-            />
-          </label>
-          <label
-            >Animatsioonid ja illustratsioonid:
-            <p>Kasutatud on huvitavaid, asjakohaseid,
-              isikupäraseid animatsioone ja illustratsioone</p>
-            <div class="value">0</div>
-            <input
-              type="range"
-              name="design.illustratiivne"
-              max="11"
-              min="0"
-              step="1"
-              value="0"
-              disabled
-            />
-          </label>
-
+          <div class="category-container"></div>
+            <h2>Kasutajakogemus ja Disain</h2>
+            <label
+              >Visuaalne atraktiivsus ja ühtsus:
+              <p>Kas disain on professionaalne, ühtne ja
+                esteetiliselt meeldiv?</p>
+              <div class="value">0</div>
+              <input
+                type="range"
+                name="design.visuaalne"
+                max="11"
+                min="0"
+                step="1"
+                value="0"
+                disabled
+              />
+            </label>
+            <label
+              >Interaktiivsus ja intuitiivsus:
+              <p>Kas funktsioonid on interaktiivsed? Kas mäng
+                on kaasahaarav ja õpetuseta mängitav?</p>
+              <div class="value">0</div>
+              <input
+                type="range"
+                name="design.interaktiivne"
+                max="11"
+                min="0"
+                step="1"
+                value="0"
+                disabled
+              />
+            </label>
+            <label
+              >Animatsioonid ja illustratsioonid:
+              <p>Kasutatud on huvitavaid, asjakohaseid,
+                isikupäraseid animatsioone ja illustratsioone</p>
+              <div class="value">0</div>
+              <input
+                type="range"
+                name="design.illustratiivne"
+                max="11"
+                min="0"
+                step="1"
+                value="0"
+                disabled
+              />
+            </label>
+          </div>
+        <div class="category-container">
           <h2>Õpetlikkus ja faktitäpsus</h2>
           <label
             >Aktuaalsus:
@@ -113,7 +115,8 @@
               disabled
             />
           </label>
-
+        </div>
+          <div class="category-container">
           <h2>Funktsionaalsus ja jõudlus</h2>
           <label
             >Jõudlus:
@@ -160,6 +163,7 @@
               disabled
             />
           </label>
+        </div>
           <br />
           <a href="#" id="submitScores" class="button">Kinnita hinded</a>
         </form>
