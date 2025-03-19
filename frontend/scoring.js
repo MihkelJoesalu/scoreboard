@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   submitScoresButton.addEventListener("click", async function (event) {
     event.preventDefault();
-    console.log(selectedTeam.teamName || team.name);
+    console.log(selectedTeam.teamName || selectedTeam.name);
 
     if (!selectedTeam) {
       alert("Palun vali tiim!");
