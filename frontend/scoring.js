@@ -44,27 +44,34 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         a.addEventListener("click", function (event) {
             event.preventDefault();
-
-            // Unselect teams from the other list
+        
+            // Unselect teams from other list
             if (isRated) {
                 teamList.querySelectorAll("a").forEach(link => link.classList.remove("selected"));
             } else {
                 ratedTeamList.querySelectorAll("a").forEach(link => link.classList.remove("selected"));
             }
-
+        
             // Highlight selected team
             document.querySelectorAll("#teamList a, #ratedTeamList a").forEach(link => link.classList.remove("selected"));
             a.classList.add("selected");
-
+        
             selectedTeam = team;
             isRatedTeam = isRated;
-
+        
+            // Enable sliders
+            enableSliders();
+        
+            // If it's a rated team, load existing scores
             if (isRated) {
                 updateSliders(team.scores);
+                submitScoresButton.textContent = "Muuda hindeid";  // Change button text
             } else {
                 resetSliders();
+                submitScoresButton.textContent = "Kinnita hinded";  // Default button text
             }
         });
+        
 
         li.appendChild(a);
         return li;
@@ -100,18 +107,17 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     });
 
-    // Handle form submission when the link is clicked
-    submitScoresLink.addEventListener("click", async function (event) {
+    submitScoresButton.addEventListener("click", async function (event) {
         event.preventDefault();
-
-        const selectedTeam = teamList.querySelector("a.selected");
+    
         if (!selectedTeam) {
-            alert("Please select a team");
+            alert("Palun vali tiim!");
             return;
         }
-
-        const teamId = selectedTeam.dataset.teamId;
+    
+        const teamId = selectedTeam.teamId || selectedTeam._id;
         const formData = new FormData(scoreForm);
+    
         let scores = {
             design: {
                 visuaalne: Number(formData.get("design.visuaalne")),
@@ -129,31 +135,44 @@ document.addEventListener("DOMContentLoaded", async function () {
                 struktuur: Number(formData.get("functionality.struktuur")),
             }
         };
-
-        // Send scores to backend
-        const response = await fetch(`${API_URL}/api/rate`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ judgeId, teamId, scores })
-        });
-
-        if (response.ok) {
-            alert("Hindamine õnnestus!");
-
-            // Remove rated team from list
-            selectedTeam.parentElement.remove();
-
-            // Reset sliders
-            resetSliders();
-
-            // If all teams are rated, go to results page
-            if (teamList.children.length === 0) {
-                window.location.href = "results.html";
+    
+        try {
+            // First, check if the team is already rated
+            const checkRes = await fetch(`${API_URL}/api/rated-teams/${judgeData.name}`);
+            const ratedTeams = await checkRes.json();
+            const isAlreadyRated = ratedTeams.some(team => team.teamId === teamId || team._id === teamId);
+    
+            // Determine correct method & endpoint
+            const method = isAlreadyRated ? "PUT" : "POST";
+            const endpoint = `${API_URL}/api/rate`;
+    
+            const response = await fetch(endpoint, {
+                method: method,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ judgeId, teamId, scores })
+            });
+    
+            if (response.ok) {
+                alert(isAlreadyRated ? "Hinded uuendatud!" : "Hindamine õnnestus!");
+    
+                if (!isAlreadyRated) {
+                    // Move the team from unrated to rated list
+                    selectedTeam.parentElement.remove();
+                    ratedTeamList.appendChild(createTeamListItem(selectedTeam, true));
+                }
+    
+                resetSliders();
+                submitScoresButton.textContent = "Kinnita hinded";
+            } else {
+                const errorData = await response.json();
+                alert(errorData.error || "Hindamisel tekkis viga!");
             }
-        } else {
-            alert("Hindamisel tekkis viga!");
+        } catch (error) {
+            console.error("Serveri viga:", error);
+            alert("Võrgu viga, proovi uuesti!");
         }
     });
+    
 
     // See results button
     document.getElementById("seeResultsBtn").addEventListener("click", function () {
