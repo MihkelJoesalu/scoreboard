@@ -201,7 +201,12 @@ if (response.ok) {
         ? "Muuda hindeid"
         : "Kinnita hinded";
     }
-  }
+  }  
+   window.scrollTo({ top: 0, behavior: "smooth" });
+
+  setTimeout(() => {
+      window.location.reload();
+  }, 500);
 
   // Reset sliders if no team is selected
   if (!selectedTeam) {
@@ -217,13 +222,6 @@ if (response.ok) {
      } catch (err) {
       console.error("Error submitting scores:", err);
     }
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
-
-    setTimeout(() => {
-        window.location.reload();
-    }, 500);
-
   });
 
   // See results button
