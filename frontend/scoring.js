@@ -221,7 +221,6 @@ if (response.ok) {
      } catch (err) {
       console.error("Error submitting scores:", err);
     }
-    window.location.reload();
 
   });
 
