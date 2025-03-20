@@ -216,6 +216,7 @@ if (response.ok) {
       console.error("Error submitting scores:", err);
     }
     window.location.reload();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
   // See results button
