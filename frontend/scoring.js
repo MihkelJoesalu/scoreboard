@@ -207,7 +207,7 @@ if (response.ok) {
   }
 
   // Scroll to the top of the page
-  window.location.reload();
+  
       } else {
         const errorData = await response.json();
         alert(errorData.error || "Hindamisel tekkis viga!");
@@ -215,6 +215,7 @@ if (response.ok) {
      } catch (err) {
       console.error("Error submitting scores:", err);
     }
+    window.location.reload();
   });
 
   // See results button
