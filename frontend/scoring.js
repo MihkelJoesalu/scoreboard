@@ -207,7 +207,7 @@ if (response.ok) {
   }
 
   // Scroll to the top of the page
-  window.scrollTo(0, 0);
+  window.location.reload();
       } else {
         const errorData = await response.json();
         alert(errorData.error || "Hindamisel tekkis viga!");
