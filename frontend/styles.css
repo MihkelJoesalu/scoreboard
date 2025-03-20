@@ -268,7 +268,7 @@ tr:nth-child(even) {
     margin: 5px;
     text-decoration: none;
     color: black; /* Text color */
-    background-color: white; /* Background color */
+    background-color: #c0392b;
     border: 2px solid red; /* Red border */
     border-radius: 5px; /* Rounded corners */
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
@@ -282,8 +282,8 @@ tr:nth-child(even) {
   
   /* Style for the selected team button */
   #teamList a.selected {
-    background-color: red; /* Red background for selected team */
-    color: white; /* White text for selected team */
+    background-color: white; /* Red background for selected team */
+    color: black; /* White text for selected team */
     font-weight: bold; /* Bold text for selected team */
 
 @media (max-width: 768px) {
