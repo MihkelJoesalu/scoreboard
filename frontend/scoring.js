@@ -125,7 +125,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   submitScoresButton.addEventListener("click", async function (event) {
     event.preventDefault();
-    console.log(selectedTeam.teamName || selectedTeam.name);
 
     if (!selectedTeam) {
       alert("Palun vali tiim!");
@@ -206,7 +205,7 @@ if (response.ok) {
     resetSliders();
   }
 
-  // Scroll to the top of the page
+
   window.scrollTo({ top: 0, behavior: "smooth" });
 
         // Wait for the scroll animation to complete before reloading the page

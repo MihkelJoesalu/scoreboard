@@ -233,7 +233,7 @@ tr:nth-child(even) {
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s;
-  }
+ }
   
   .team-button:hover {
     background-color: #c0392b;
@@ -284,7 +284,8 @@ tr:nth-child(even) {
     background-color: white; /* Red background for selected team */
     color: black; /* White text for selected team */
     font-weight: bold; /* Bold text for selected team */
-
+    }
+    
 @media (max-width: 768px) {
     .container {
         padding: 10px;
