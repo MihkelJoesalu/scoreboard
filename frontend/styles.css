@@ -267,9 +267,8 @@ tr:nth-child(even) {
     padding: 10px 15px;
     margin: 5px;
     text-decoration: none;
-    color: black; /* Text color */
+    color: white; /* Text color */
     background-color: #c0392b;
-    border: 2px solid red; /* Red border */
     border-radius: 5px; /* Rounded corners */
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
   }
