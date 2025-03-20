@@ -14,7 +14,7 @@ body {
     padding-top: 40px;
 }
 .checkmark {
-    color: green; /* Green color for the checkmark */
+    color: white; /* White color for the checkmark */
     font-weight: bold;
     margin-left: 10px; /* Add some spacing between the team name and the checkmark */
 }
