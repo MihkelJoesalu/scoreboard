@@ -170,6 +170,11 @@ const response = await fetch(endpoint, {
 if (response.ok) {
   alert(selectedTeam.rated ? "Hinded uuendatud!" : "Hindamine õnnestus!");
 
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  setTimeout(() => {
+    window.location.reload();
+                 }, 1500);  // Adjust the delay (500ms)
+
   // Fetch updated results from the database
   const updatedTeamsRes = await fetch(`${API_URL}/api/teams/${judgeData.name}`);
   const updatedTeams = await updatedTeamsRes.json();
@@ -199,10 +204,6 @@ if (response.ok) {
         : "Kinnita hinded";
     }
   }
-  window.scrollTo({ top: 0, behavior: "smooth" });
-  setTimeout(() => {
-    window.location.reload();
-                 }, 1500);  // Adjust the delay (500ms)
   // Reset sliders if no team is selected
   if (!selectedTeam) {
     resetSliders();
