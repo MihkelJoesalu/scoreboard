@@ -1,3 +1,5 @@
+const { set } = require("mongoose");
+
 document.addEventListener("DOMContentLoaded", async function () {
   const judgeId = localStorage.getItem("judgeId");
   const judgeName = localStorage.getItem("judgeName");
@@ -215,8 +217,13 @@ if (response.ok) {
      } catch (err) {
       console.error("Error submitting scores:", err);
     }
-    window.location.reload();
+
     window.scrollTo({ top: 0, behavior: "smooth" });
+
+    setTimeout(() => {
+        window.location.reload();
+    }, 500);
+
   });
 
   // See results button
