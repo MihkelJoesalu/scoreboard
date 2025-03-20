@@ -212,9 +212,8 @@ if (response.ok) {
         const errorData = await response.json();
         alert(errorData.error || "Hindamisel tekkis viga!");
       }
-    } catch (error) {
-      console.error("Serveri viga:", error);
-      alert("Võrgu viga, proovi uuesti!");
+     } catch (err) {
+      console.error("Error submitting scores:", err);
     }
   });
 
