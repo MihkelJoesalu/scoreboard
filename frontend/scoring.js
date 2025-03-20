@@ -1,5 +1,3 @@
-const { set } = require("mongoose");
-
 document.addEventListener("DOMContentLoaded", async function () {
   const judgeId = localStorage.getItem("judgeId");
   const judgeName = localStorage.getItem("judgeName");
@@ -201,12 +199,7 @@ if (response.ok) {
         ? "Muuda hindeid"
         : "Kinnita hinded";
     }
-  }  
-   window.scrollTo({ top: 0, behavior: "smooth" });
-
-  setTimeout(() => {
-      window.location.reload();
-  }, 500);
+  }
 
   // Reset sliders if no team is selected
   if (!selectedTeam) {
@@ -214,6 +207,12 @@ if (response.ok) {
   }
 
   // Scroll to the top of the page
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  // Wait for the scroll animation to complete before reloading the page
+  setTimeout(() => {
+    window.location.reload();
+  }, 500); // Adjust the delay (500ms) to match the scroll animation duration
   
       } else {
         const errorData = await response.json();
@@ -222,6 +221,8 @@ if (response.ok) {
      } catch (err) {
       console.error("Error submitting scores:", err);
     }
+    window.location.reload();
+
   });
 
   // See results button
