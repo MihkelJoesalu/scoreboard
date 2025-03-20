@@ -173,7 +173,7 @@ if (response.ok) {
   window.scrollTo({ top: 0, behavior: "smooth" });
   setTimeout(() => {
     window.location.reload();
-                 }, 1500);  // Adjust the delay (500ms)
+                 }, 300);  // Adjust the delay (500ms)
 
   // Fetch updated results from the database
   const updatedTeamsRes = await fetch(`${API_URL}/api/teams/${judgeData.name}`);
