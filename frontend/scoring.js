@@ -209,10 +209,10 @@ if (response.ok) {
   // Scroll to the top of the page
   window.scrollTo({ top: 0, behavior: "smooth" });
 
-  // Wait for the scroll animation to complete before reloading the page
+        // Wait for the scroll animation to complete before reloading the page
   setTimeout(() => {
     window.location.reload();
-  }, 500); // Adjust the delay (500ms) to match the scroll animation duration
+  }, 1500);       // Adjust the delay (500ms) to match the scroll animation duration
   
       } else {
         const errorData = await response.json();
