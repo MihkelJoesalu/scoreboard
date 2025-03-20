@@ -199,20 +199,14 @@ if (response.ok) {
         : "Kinnita hinded";
     }
   }
-
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  setTimeout(() => {
+    window.location.reload();
+                 }, 1500);  // Adjust the delay (500ms)
   // Reset sliders if no team is selected
   if (!selectedTeam) {
     resetSliders();
   }
-
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
-
-        // Wait for the scroll animation to complete before reloading the page
-  setTimeout(() => {
-    window.location.reload();
-  }, 1500);       // Adjust the delay (500ms) to match the scroll animation duration
-  
       } else {
         const errorData = await response.json();
         alert(errorData.error || "Hindamisel tekkis viga!");
@@ -220,7 +214,6 @@ if (response.ok) {
      } catch (err) {
       console.error("Error submitting scores:", err);
     }
-
   });
 
   // See results button
