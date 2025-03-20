@@ -131,8 +131,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       return;
     }
 
-    console.log("Selected team:", selectedTeam.teamName || selectedTeam.name);
-
     const teamId = selectedTeam.teamId || selectedTeam._id;
     const formData = new FormData(scoreForm);
 
@@ -154,8 +152,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       },
     };
 
-    console.log("Scores to submit:", scores);
-
     try {
 // Determine correct method & endpoint
 const method = selectedTeam.rated ? "PUT" : "POST";
@@ -173,7 +169,7 @@ if (response.ok) {
   window.scrollTo({ top: 0, behavior: "smooth" });
   setTimeout(() => {
     window.location.reload();
-                 }, 300);  // Adjust the delay (500ms)
+                 }, 200);  // Adjust the delay (500ms)
 
   // Fetch updated results from the database
   const updatedTeamsRes = await fetch(`${API_URL}/api/teams/${judgeData.name}`);

@@ -29,7 +29,7 @@ body {
   
   .category-container h2 {
     margin-top: 0;
-    color: white /* Optional: Highlight the category title */
+    color: #ccc /* Optional: Highlight the category title */
   }
   
   .category-container label {
@@ -40,7 +40,7 @@ body {
   .category-container p {
     margin: 5px 0;
     font-size: 0.9em;
-    color: #ccc;
+    color: white;
   }
   
   .category-container .value {
@@ -285,7 +285,7 @@ tr:nth-child(even) {
     color: black; /* White text for selected team */
     font-weight: bold; /* Bold text for selected team */
     }
-    
+
 @media (max-width: 768px) {
     .container {
         padding: 10px;
