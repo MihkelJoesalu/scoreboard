@@ -12,8 +12,8 @@ const corsOptions = {
   origin:
     process.env.NODE_ENV === "production"
       ? [
-          "https://scoreboard-roan-five.vercel.app",
-          "https://hinneteleht.netlify.app",
+          "https://scoreboard-red.vercel.app",
+          "https://hindamine.netlify.app",
         ] // Add your Netlify URL here
       : "*", // Allow all origins for local development
 };
